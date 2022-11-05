@@ -1,24 +1,25 @@
 import { useState } from "react";
-import { useAuthContext } from "./useAuthContext";
 import axios from "axios";
 
 export const useSignup = () => {
-  const [error, setError] = useState<Boolean | null>(null);
-  const [isLoading, setIsLoading] = useState<Boolean | null>(null);
+  const [error, setError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const signup = async (
     email: String,
     password: String,
-    name: String,
-    lastname: String
+    fullname: String,
+    gender: String,
+    birthdate: String,
+    city: String
   ) => {
     setIsLoading(true);
-    setError(null);
+    setError(false);
 
     try {
       const response = await axios.post(
         "http://localhost:3000/api/users/signup",
-        { email, password, name, lastname },
+        { email, password, fullname, gender, birthdate, city },
         {
           headers: {
             "Content-Type": "application/json",
@@ -27,7 +28,6 @@ export const useSignup = () => {
         }
       );
 
-      localStorage.setItem("user", JSON.stringify(response));
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);

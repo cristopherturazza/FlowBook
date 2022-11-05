@@ -16,21 +16,15 @@ const loginUser = async (req, res) => {
     res.status(200).json({ email, token });
   } catch (err) {
     res.status(400).json({ error: err.message });
+    console.log(err.message);
   }
 };
 
 const signupUser = async (req, res) => {
-  const { email, password, name, lastname, age, gender } = req.body;
+  const { email, password, fullname, age, gender } = req.body;
 
   try {
-    const user = await User.signup(
-      email,
-      password,
-      name,
-      lastname,
-      age,
-      gender
-    );
+    const user = await User.signup(email, password, fullname, age, gender);
     res.status(201).json(user);
   } catch (err) {
     res.status(400).json({ error: err.message });

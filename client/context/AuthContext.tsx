@@ -16,13 +16,13 @@ type User = {
 
 type ActionType = {
   type: "LOGIN" | "LOGOUT";
-  payload: User;
+  payload?: User;
 };
 
 export const authReducer = (state: User, action: ActionType): User => {
   switch (action.type) {
     case "LOGIN":
-      return action.payload;
+      return action.payload ?? null;
     case "LOGOUT":
       return null;
     default:
@@ -36,11 +36,7 @@ export const AuthContextProvider: React.FC<PropsWithChildren> = ({
   const [state, dispatch] = useReducer(authReducer, user);
 
   useEffect(() => {
-    const get = localStorage.getItem("user");
-
-    if (typeof get === "string") {
-      const user = JSON.parse(get);
-    }
+    const user = JSON.parse(localStorage.getItem("user") || "{}");
 
     if (user) {
       dispatch({ type: "LOGIN", payload: user });

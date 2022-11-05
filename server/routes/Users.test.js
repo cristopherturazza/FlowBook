@@ -17,8 +17,7 @@ describe("Users Controllers Routes", () => {
     const testUser = {
       email: "maxgood@gmail.com",
       password: "123Starsarebig!",
-      name: "Max",
-      lastname: "Good",
+      fullname: "Max Good",
       age: 25,
       gender: "Male",
     };
@@ -32,8 +31,7 @@ describe("Users Controllers Routes", () => {
           expect.objectContaining({
             email: expect.any(String),
             password: expect.any(String),
-            name: expect.any(String),
-            lastname: expect.any(String),
+            fullname: expect.any(String),
             age: expect.any(Number),
             gender: expect.any(String),
           })
@@ -45,8 +43,7 @@ describe("Users Controllers Routes", () => {
     const testUser = {
       email: "maxgood@gmail.com",
       password: "123Starsarebig!",
-      name: "Max",
-      lastname: "Good",
+      fullname: "Max Good",
       age: 25,
       gender: "Male",
     };
@@ -61,8 +58,7 @@ describe("Users Controllers Routes", () => {
     const testUser = {
       email: "maxgoodgmail.com",
       password: "bao",
-      name: "Max",
-      lastname: "Good",
+      fullname: "Max Good",
       age: 25,
       gender: "Male",
     };
@@ -77,8 +73,7 @@ describe("Users Controllers Routes", () => {
     const testUser = {
       email: "maxgood@gmail.com",
       password: "123starsarebig",
-      name: "Max",
-      lastname: "Good",
+      fullname: "Max Good",
       age: 25,
       gender: "Male",
     };
@@ -93,8 +88,7 @@ describe("Users Controllers Routes", () => {
     const testUser = {
       email: "test@gmail.com",
       password: "123forfive",
-      name: "",
-      lastname: "Goodman",
+      fullname: "",
     };
     return await request
       .post("/api/users/signup")
