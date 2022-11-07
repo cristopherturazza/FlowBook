@@ -21,10 +21,17 @@ const loginUser = async (req, res) => {
 };
 
 const signupUser = async (req, res) => {
-  const { email, password, fullname, age, gender } = req.body;
+  const { email, password, fullname, gender, birthdate, city } = req.body;
 
   try {
-    const user = await User.signup(email, password, fullname, age, gender);
+    const user = await User.signup(
+      email,
+      password,
+      fullname,
+      gender,
+      birthdate,
+      city
+    );
     res.status(201).json(user);
   } catch (err) {
     res.status(400).json({ error: err.message });

@@ -1,16 +1,19 @@
 import { useState } from "react";
 import axios from "axios";
+import { useRouter } from "next/router";
 
 export const useSignup = () => {
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
+  const router = useRouter();
+
   const signup = async (
     email: String,
     password: String,
     fullname: String,
-    gender: String,
     birthdate: String,
+    gender: String,
     city: String
   ) => {
     setIsLoading(true);
@@ -29,6 +32,7 @@ export const useSignup = () => {
       );
 
       setIsLoading(false);
+      router.push("/login");
     } catch (error) {
       setIsLoading(false);
       setError(true);

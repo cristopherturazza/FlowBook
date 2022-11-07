@@ -18,10 +18,13 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
-  age: {
-    type: Number,
-  },
   gender: {
+    type: String,
+  },
+  birthdate: {
+    type: String,
+  },
+  city: {
     type: String,
   },
 });
@@ -32,8 +35,9 @@ userSchema.statics.signup = async function (
   email,
   password,
   fullname,
-  age,
-  gender
+  gender,
+  birthdate,
+  city
 ) {
   const reqUser = await this.findOne({ email });
 
@@ -61,8 +65,9 @@ userSchema.statics.signup = async function (
     email,
     password: hash,
     fullname,
-    age,
     gender,
+    birthdate,
+    city,
   });
 
   return user;

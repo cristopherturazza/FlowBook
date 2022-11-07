@@ -7,7 +7,7 @@ const Signup: React.FC = () => {
   const [passwordCheck, setPasswordCheck] = useState("");
   const [errorPasswordCheck, setErrorPasswordCheck] = useState(false);
   const [fullname, setFullName] = useState("");
-  const [birthDate, setBirthDate] = useState("");
+  const [birthdate, setBirthDate] = useState("");
   const [gender, setGender] = useState("");
   const [city, setCity] = useState("");
   const { signup, error, isLoading } = useSignup();
@@ -15,7 +15,7 @@ const Signup: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!errorPasswordCheck) {
-      await signup(email, password, fullname, birthDate, gender, city);
+      await signup(email, password, fullname, birthdate, gender, city);
     }
   };
 
@@ -44,6 +44,7 @@ const Signup: React.FC = () => {
               onChange={(e) => setEmail(e.target.value)}
               value={email}
               className="input input-bordered w-full bg-slate-100 focus:outline-lightblue"
+              placeholder="Richiesto"
             />
           </div>
           <div className="flex flex-col">
@@ -55,6 +56,7 @@ const Signup: React.FC = () => {
               onChange={(e) => setFullName(e.target.value)}
               value={fullname}
               className="input input-bordered w-full bg-slate-100 focus:outline-lightblue"
+              placeholder="Richiesto"
             />
           </div>
           <div className="flex flex-col relative">
@@ -65,6 +67,7 @@ const Signup: React.FC = () => {
               type="password"
               onChange={(e) => setPassword(e.target.value)}
               value={password}
+              placeholder="Richiesto"
               className={`input input-bordered w-full bg-slate-100 focus:outline-lightblue ${
                 errorPasswordCheck
                   ? "outline-scarletred focus:outline-scarletred"
@@ -95,6 +98,7 @@ const Signup: React.FC = () => {
               type="password"
               onChange={(e) => setPasswordCheck(e.target.value)}
               value={passwordCheck}
+              placeholder="Richiesto"
               className={`input input-bordered w-full bg-slate-100 focus:outline-lightblue ${
                 errorPasswordCheck
                   ? "outline-scarletred focus:outline-scarletred"
@@ -130,7 +134,7 @@ const Signup: React.FC = () => {
             <input
               type="date"
               onChange={(e) => setBirthDate(e.target.value)}
-              value={birthDate}
+              value={birthdate}
               className="input input-bordered w-full bg-slate-100 focus:outline-lightblue"
             />
           </div>

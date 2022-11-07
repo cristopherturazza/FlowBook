@@ -18,8 +18,9 @@ describe("Users Controllers Routes", () => {
       email: "maxgood@gmail.com",
       password: "123Starsarebig!",
       fullname: "Max Good",
-      age: 25,
       gender: "Male",
+      birthdate: "08/08/1986",
+      city: "Verona",
     };
     return await request
       .post("/api/users/signup")
@@ -32,8 +33,9 @@ describe("Users Controllers Routes", () => {
             email: expect.any(String),
             password: expect.any(String),
             fullname: expect.any(String),
-            age: expect.any(Number),
             gender: expect.any(String),
+            birthdate: expect.any(String),
+            city: expect.any(String),
           })
         );
       });
@@ -42,10 +44,11 @@ describe("Users Controllers Routes", () => {
   it("reply with an error if password is not strong", async () => {
     const testUser = {
       email: "maxgood@gmail.com",
-      password: "123Starsarebig!",
+      password: "123big!",
       fullname: "Max Good",
-      age: 25,
       gender: "Male",
+      birthdate: "08/08/1986",
+      city: "Verona",
     };
     return await request
       .post("/api/users/signup")
