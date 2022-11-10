@@ -4,7 +4,8 @@ import axios from "axios";
 import { useRouter } from "next/router";
 
 export const useLogin = () => {
-  const [error, setError] = useState(false);
+  const [error, setError] = useState("");
+  const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const { dispatch } = useAuthContext();
 
@@ -12,7 +13,7 @@ export const useLogin = () => {
 
   const login = async (email: String, password: String) => {
     setIsLoading(true);
-    setError(false);
+    setIsError(false);
 
     try {
       const response = await axios.post(
@@ -27,13 +28,18 @@ export const useLogin = () => {
       );
 
       localStorage.setItem("user", JSON.stringify(response.data));
-      dispatch({ type: "LOGIN", payload: response.data });
-      router.push("/");
-      setIsLoading(false);
-    } catch (error) {
-      setIsLoading(false);
-      setError(true);
+
+      setTimeout(() => setIsLoading(false), 1200);
+      setTimeout(
+        () => dispatch({ type: "LOGIN", payload: response.data }),
+        1201
+      );
+      setTimeout(() => router.push("/"), 1202);
+    } catch (error: any) {
+      setTimeout(() => setIsLoading(false), 1200);
+      setTimeout(() => setIsError(true), 1201);
+      setError(error.response.data.error);
     }
   };
-  return { login, isLoading, error };
+  return { login, isLoading, isError, error };
 };

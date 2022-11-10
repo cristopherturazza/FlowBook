@@ -3,10 +3,8 @@ import { useAuthContext } from "../hooks/useAuthContext";
 import { useLogout } from "../hooks/useLogout";
 
 const Navbar: React.FC = () => {
-  const { state } = useAuthContext();
+  const { userData } = useAuthContext();
   const { logout } = useLogout();
-
-  const user = state?.email;
 
   //TO-DO: link a pagina profilo personale
   // Notifiche?
@@ -17,7 +15,7 @@ const Navbar: React.FC = () => {
         FlowBook
       </h1>
       <div className="navbar-end pr-24">
-        {!user && (
+        {!userData ? (
           <ul className="flex text-lg font-semibold font-serif">
             <li className="pr-8 hover:text-lightblue">
               <Link href="/login">Accedi</Link>
@@ -26,17 +24,17 @@ const Navbar: React.FC = () => {
               <Link href="/signup">Registrati</Link>
             </li>
           </ul>
-        )}
-        {user && (
+        ) : null}
+        {userData ? (
           <ul className="flex text-lg font-semibold font-serif">
             <li className="pr-8 hover:text-lightblue">
               <button onClick={() => logout()}>Logout</button>
             </li>
             <li className="hover:text-lightblue">
-              <Link href="/user">Il tuo profilo</Link>
+              <Link href="/user/your-account">Il tuo profilo</Link>
             </li>
           </ul>
-        )}
+        ) : null}
       </div>
     </div>
   );

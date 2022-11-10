@@ -25,7 +25,11 @@ const userSchema = new Schema({
     type: String,
   },
   city: {
-    type: String,
+    place_id: { type: String, required: true },
+    city: { type: String, required: true },
+    county_code: { type: String, required: true },
+    lon: { type: Number, required: true },
+    lat: { type: Number, required: true },
   },
 });
 
@@ -42,20 +46,26 @@ userSchema.statics.signup = async function (
   const reqUser = await this.findOne({ email });
 
   if (!email || !password || !fullname) {
-    throw Error("All required fields must be filled");
+    throw Error("Si prega di riempire tutti i campi obbligatori");
+  }
+
+  if (!city) {
+    throw Error(
+      "Selezionare una città tra quelle suggerite nel menu a tendina"
+    );
   }
 
   if (!validator.isEmail(email)) {
-    throw Error("Please insert a valid email");
+    throw Error("Si prega di inserire una email in formato valido");
   }
   if (!validator.isStrongPassword(password)) {
     throw Error(
-      "Password must be minimum 8 charachters and must contain one uppercase, one number and one symbol"
+      "La password deve essere lunga almeno 8 caratteri e contenere almeno un numero e almneno un simbolo"
     );
   }
 
   if (reqUser) {
-    throw Error("Email already in use");
+    throw Error("L'email inserita è già in uso");
   }
 
   const salt = await bcrypt.genSalt(10);
@@ -77,19 +87,19 @@ userSchema.statics.signup = async function (
 
 userSchema.statics.login = async function (email, password) {
   if (!email || !password) {
-    throw Error("All required fields must be filled");
+    throw Error("Si prega di riempire tutti i campi obbligatori");
   }
 
   const user = await this.findOne({ email });
 
   if (!user) {
-    throw Error("Incorrect or unregistered email");
+    throw Error("Email errata o utente non registrato");
   }
 
   const match = await bcrypt.compare(password, user.password);
 
   if (!match) {
-    throw Error("Incorrect password");
+    throw Error("Password errata");
   }
 
   return user;

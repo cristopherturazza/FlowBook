@@ -3,15 +3,17 @@ import { createContext, useReducer, useEffect, PropsWithChildren } from "react";
 const user: User | null = {
   email: "",
   token: "",
+  id: "",
 };
 export const AuthContext = createContext<{
-  state: User;
+  userData: User;
   dispatch: React.Dispatch<ActionType>;
-}>({ state: user, dispatch: () => {} });
+}>({ userData: user, dispatch: () => {} });
 
 type User = {
   email: String;
   token: String;
+  id: String;
 } | null;
 
 type ActionType = {
@@ -33,7 +35,7 @@ export const authReducer = (state: User, action: ActionType): User => {
 export const AuthContextProvider: React.FC<PropsWithChildren> = ({
   children,
 }) => {
-  const [state, dispatch] = useReducer(authReducer, user);
+  const [userData, dispatch] = useReducer(authReducer, user);
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user") || "{}");
@@ -44,7 +46,7 @@ export const AuthContextProvider: React.FC<PropsWithChildren> = ({
   }, []);
 
   return (
-    <AuthContext.Provider value={{ state, dispatch }}>
+    <AuthContext.Provider value={{ userData, dispatch }}>
       {children}
     </AuthContext.Provider>
   );

@@ -20,7 +20,13 @@ describe("Users Controllers Routes", () => {
       fullname: "Max Good",
       gender: "Male",
       birthdate: "08/08/1986",
-      city: "Verona",
+      city: {
+        place_id: "56125asdasd45",
+        city: "Cerea",
+        county_code: "VR",
+        lon: 45.8596,
+        lat: 73.5647,
+      },
     };
     return await request
       .post("/api/users/signup")
@@ -35,7 +41,7 @@ describe("Users Controllers Routes", () => {
             fullname: expect.any(String),
             gender: expect.any(String),
             birthdate: expect.any(String),
-            city: expect.any(String),
+            city: expect.any(Object),
           })
         );
       });
