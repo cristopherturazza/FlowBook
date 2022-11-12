@@ -1,10 +1,16 @@
 import Link from "next/link";
+import * as React from "react";
+import { useEffect } from "react";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useLogout } from "../hooks/useLogout";
 
 const Navbar: React.FC = () => {
   const { userData } = useAuthContext();
   const { logout } = useLogout();
+
+  useEffect(() => {
+    console.log(userData);
+  }, [userData]);
 
   //TO-DO: link a pagina profilo personale
   // Notifiche?
@@ -15,7 +21,7 @@ const Navbar: React.FC = () => {
         FlowBook
       </h1>
       <div className="navbar-end pr-24">
-        {!userData ? (
+        {!userData?.isLoggedIn ? (
           <ul className="flex text-lg font-semibold font-serif">
             <li className="pr-8 hover:text-lightblue">
               <Link href="/login">Accedi</Link>
@@ -25,7 +31,7 @@ const Navbar: React.FC = () => {
             </li>
           </ul>
         ) : null}
-        {userData ? (
+        {userData?.isLoggedIn ? (
           <ul className="flex text-lg font-semibold font-serif">
             <li className="pr-8 hover:text-lightblue">
               <button onClick={() => logout()}>Logout</button>

@@ -43,12 +43,12 @@ const signupUser = async (req, res) => {
 
 const getUserData = async (req, res) => {
   const id = req.params.id;
-  console.log(id);
   try {
     const user = await User.findById(id);
+    user.password = undefined;
     res.status(201).json(user);
   } catch (err) {
-    es.status(400).json({ error: err.message });
+    res.status(400).json({ error: err.message });
     console.log(err.message);
   }
 };

@@ -27,13 +27,13 @@ export const useLogin = () => {
         }
       );
 
-      localStorage.setItem("user", JSON.stringify(response.data));
+      const user = response.data;
+      user.isLoggedIn = true;
+
+      localStorage.setItem("user", JSON.stringify(user));
 
       setTimeout(() => setIsLoading(false), 1200);
-      setTimeout(
-        () => dispatch({ type: "LOGIN", payload: response.data }),
-        1201
-      );
+      setTimeout(() => dispatch({ type: "LOGIN", payload: user }), 1201);
       setTimeout(() => router.push("/"), 1202);
     } catch (error: any) {
       setTimeout(() => setIsLoading(false), 1200);

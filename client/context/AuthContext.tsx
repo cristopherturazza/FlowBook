@@ -1,10 +1,7 @@
 import { createContext, useReducer, useEffect, PropsWithChildren } from "react";
 
-const user: User | null = {
-  email: "",
-  token: "",
-  id: "",
-};
+const user: User | null = null;
+
 export const AuthContext = createContext<{
   userData: User;
   dispatch: React.Dispatch<ActionType>;
@@ -14,6 +11,7 @@ type User = {
   email: String;
   token: String;
   id: String;
+  isLoggedIn: Boolean;
 } | null;
 
 type ActionType = {
