@@ -83,7 +83,44 @@ userSchema.statics.signup = async function (
   return user;
 };
 
-//static signup methods
+userSchema.statics.updateUser = async function (
+  id,
+  fullname,
+  gender,
+  birthdate,
+  city
+) {
+  const user = await this.updateOne(
+    { _id: id },
+    {
+      fullname,
+      gender,
+      birthdate,
+      city,
+    }
+  );
+
+  return user;
+};
+userSchema.statics.updatePassword = async function (id, password) {
+  if (!validator.isStrongPassword(password)) {
+    throw Error(
+      "La password deve essere lunga almeno 8 caratteri e contenere almeno un numero e almneno un simbolo"
+    );
+  }
+
+  const salt = await bcrypt.genSalt(10);
+  const hash = await bcrypt.hash(password, salt);
+
+  const user = await this.updateOne(
+    { _id: id },
+    {
+      password: hash,
+    }
+  );
+
+  return user;
+};
 
 userSchema.statics.login = async function (email, password) {
   if (!email || !password) {

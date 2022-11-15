@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useLogin } from "../hooks/useLogin";
+import Layout from "../components/Layout";
 import Link from "next/link";
 
 const Login: React.FC = () => {
@@ -58,7 +59,7 @@ const Login: React.FC = () => {
                   d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
                 />
               </svg>
-              <span>Error! {error}</span>
+              <span>Errore! {error}</span>
             </div>
           </div>
         ) : null}

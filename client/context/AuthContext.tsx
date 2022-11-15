@@ -1,6 +1,14 @@
-import { createContext, useReducer, useEffect, PropsWithChildren } from "react";
+import {
+  createContext,
+  useReducer,
+  useEffect,
+  useState,
+  PropsWithChildren,
+} from "react";
 
 const user: User | null = null;
+
+let isLoggedIn: Boolean = false;
 
 export const AuthContext = createContext<{
   userData: User;
@@ -22,7 +30,12 @@ type ActionType = {
 export const authReducer = (state: User, action: ActionType): User => {
   switch (action.type) {
     case "LOGIN":
-      return action.payload ?? null;
+      return {
+        email: action.payload?.email ?? "",
+        token: action.payload?.token ?? "",
+        id: action.payload?.id ?? "",
+        isLoggedIn: true,
+      };
     case "LOGOUT":
       return null;
     default:
@@ -37,8 +50,7 @@ export const AuthContextProvider: React.FC<PropsWithChildren> = ({
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user") || "{}");
-
-    if (user) {
+    if (user.token) {
       dispatch({ type: "LOGIN", payload: user });
     }
   }, []);

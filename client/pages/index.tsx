@@ -1,17 +1,13 @@
 import Head from "next/head";
+import Layout from "../components/Layout";
 
 const Home: React.FC = () => {
   return (
-    <div>
-      <Head>
-        <title>FlowBook</title>
-        <meta
-          name="description"
-          content="A social platform for book exchanges"
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-    </div>
+    <Head>
+      <title>FlowBook</title>
+      <meta name="description" content="A social platform for book exchanges" />
+      <link rel="icon" href="/favicon.ico" />
+    </Head>
   );
 };
 

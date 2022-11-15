@@ -1,49 +1,49 @@
 import { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
+import { useAuthContext } from "./useAuthContext";
 
 import { HintCity } from "../types/HintCity";
 
-export const useSignup = () => {
+interface userProfile {
+  id: String;
+  fullname?: String;
+  birthdate?: String;
+  gender?: String;
+  city?: HintCity;
+}
+
+export const useUpdate = () => {
+  const { userData } = useAuthContext();
+
   const [error, setError] = useState("");
   const [isError, setIsError] = useState(false);
   const [isDone, setIsDone] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const router = useRouter();
-
-  const signup = async (
-    email: String,
-    password: String,
-    fullname: String,
-    birthdate?: String,
-    gender?: String,
-    selectedCity?: HintCity
-  ) => {
+  const updateProfile = async (update: userProfile) => {
     setIsLoading(true);
     setIsError(false);
 
-    const city = selectedCity;
-
     try {
-      const response = await axios.post(
-        "http://localhost:3000/api/users/signup",
-        { email, password, fullname, gender, birthdate, city },
+      const response = await axios.patch(
+        `http://localhost:3000/api/users/${userData?.id}`,
+        { ...update },
         {
           headers: {
             "Content-Type": "application/json",
             Accept: "application/json",
+            Authorization: `Bearer ${userData?.token}`,
           },
         }
       );
       setTimeout(() => setIsLoading(false), 1500);
       setTimeout(() => setIsDone(true), 1501);
-      setTimeout(() => router.push("/login"), 3000);
     } catch (error: any) {
       setTimeout(() => setIsLoading(false), 1500);
       setTimeout(() => setIsError(true), 1501);
-      setError(error.response.data.error);
+      setStatus(error.response.data.error);
     }
   };
-  return { signup, isLoading, isError, isDone, error };
+  return { updateProfile, isLoading, isError, isDone, error };
 };

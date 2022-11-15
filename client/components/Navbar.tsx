@@ -1,6 +1,4 @@
 import Link from "next/link";
-import * as React from "react";
-import { useEffect } from "react";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useLogout } from "../hooks/useLogout";
 
@@ -8,12 +6,7 @@ const Navbar: React.FC = () => {
   const { userData } = useAuthContext();
   const { logout } = useLogout();
 
-  useEffect(() => {
-    console.log(userData);
-  }, [userData]);
-
-  //TO-DO: link a pagina profilo personale
-  // Notifiche?
+  //TO-DO: Notifiche?
 
   return (
     <div className="navbar bg-darkred shadow-xl text-slate-50">
@@ -33,11 +26,11 @@ const Navbar: React.FC = () => {
         ) : null}
         {userData?.isLoggedIn ? (
           <ul className="flex text-lg font-semibold font-serif">
-            <li className="pr-8 hover:text-lightblue">
-              <button onClick={() => logout()}>Logout</button>
-            </li>
             <li className="hover:text-lightblue">
               <Link href="/user/your-account">Il tuo profilo</Link>
+            </li>
+            <li className="pl-8 hover:text-lightblue">
+              <button onClick={() => logout()}>Logout</button>
             </li>
           </ul>
         ) : null}

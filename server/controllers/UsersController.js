@@ -53,4 +53,34 @@ const getUserData = async (req, res) => {
   }
 };
 
-module.exports = { signupUser, loginUser, getUserData };
+const updateUserData = async (req, res) => {
+  const id = req.params.id;
+  const { fullname, gender, birthdate, city } = req.body;
+  try {
+    const user = await User.updateUser(id, fullname, gender, birthdate, city);
+    res.status(200).json(user);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+    console.log(err.message);
+  }
+};
+
+const updateUserPassword = async (req, res) => {
+  const id = req.params.id;
+  const { password } = req.body;
+  try {
+    const newPassword = await User.updatePassword(id, password);
+    res.status(200).json({ message: "Password modificata" });
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+    console.log(err.message);
+  }
+};
+
+module.exports = {
+  signupUser,
+  loginUser,
+  getUserData,
+  updateUserData,
+  updateUserPassword,
+};

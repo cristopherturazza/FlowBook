@@ -7,6 +7,8 @@ const {
   signupUser,
   loginUser,
   getUserData,
+  updateUserData,
+  updateUserPassword,
 } = require("../controllers/UsersController");
 
 // Signup/Login Route
@@ -20,5 +22,9 @@ router.post("/signup", signupUser);
 router.use(authChecker);
 
 router.get("/:id", getUserData);
+
+router.patch("/:id", updateUserData);
+
+router.patch("/:id/password", updateUserPassword);
 
 module.exports = router;

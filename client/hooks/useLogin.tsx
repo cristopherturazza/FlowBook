@@ -28,7 +28,6 @@ export const useLogin = () => {
       );
 
       const user = response.data;
-      user.isLoggedIn = true;
 
       localStorage.setItem("user", JSON.stringify(user));
 

@@ -14,7 +14,7 @@ const Signup: React.FC = () => {
   const [city, setCity] = useState("");
   const [hintCities, setHintCities] = useState<Array<HintCity>>([]);
   const [selectedCity, setSelectedCity] = useState<HintCity>();
-  const { signup, error, isError, isLoading } = useSignup();
+  const { signup, error, isError, isLoading, isDone } = useSignup();
 
   const handleCity = (city: HintCity) => {
     if (typeof city.city === "string") {
@@ -23,7 +23,7 @@ const Signup: React.FC = () => {
 
     const selected = {
       place_id: city.place_id,
-      city: city.city,
+      city: city.city || city.name,
       county_code: city.county_code,
       lon: city.lon,
       lat: city.lat,
@@ -191,7 +191,7 @@ const Signup: React.FC = () => {
                           handleCity(city);
                         }}
                       >
-                        {city.city} ({city.county_code})
+                        {city.city || city.name} ({city.county_code})
                       </li>
                     ))}
                 </ul>
@@ -271,6 +271,26 @@ const Signup: React.FC = () => {
             </div>
           </div>
         )}
+        {isDone ? (
+          <div className="alert alert-success shadow-lg mb-6">
+            <div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="stroke-current flex-shrink-0 h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+              <span>Utente creato correttamente!</span>
+            </div>
+          </div>
+        ) : null}
         <div className="flex flex-col items-center justify-center mt-1">
           <button
             disabled={isLoading}
