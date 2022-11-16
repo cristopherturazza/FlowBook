@@ -3,32 +3,22 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { useAuthContext } from "./useAuthContext";
 
-import { HintCity } from "../types/HintCity";
-
-interface userProfile {
-  id: String | undefined;
-  fullname?: String;
-  birthdate?: String;
-  gender?: String;
-  city?: HintCity;
-}
-
-export const useUpdate = () => {
-  const { userData } = useAuthContext();
+export const useNewPassword = () => {
+  const { userData, dispatch } = useAuthContext();
 
   const [error, setError] = useState("");
   const [isError, setIsError] = useState(false);
   const [isDone, setIsDone] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const updateProfile = async (update: userProfile) => {
+  const updatePassword = async (password: String) => {
     setIsLoading(true);
     setIsError(false);
 
     try {
       const response = await axios.patch(
-        `http://localhost:3000/api/users/${userData?.id}`,
-        { ...update },
+        `http://localhost:3000/api/users/${userData?.id}/password`,
+        { password },
         {
           headers: {
             "Content-Type": "application/json",
@@ -45,5 +35,5 @@ export const useUpdate = () => {
       setError(error.response.data.error);
     }
   };
-  return { updateProfile, isLoading, isError, isDone, error };
+  return { updatePassword, isLoading, isError, isDone, error };
 };

@@ -290,9 +290,11 @@ const UserProfile: React.FC = () => {
                 ) : null}
                 Aggiorna i dati
               </button>
-              <button className="btn btn-outline btn-sm sm:btn-sm md:btn-md lg:btn-lg mb-8 border-lightblue text-lightblue hover:bg-lightblue hover:text-slate-50 hover:border-darkblue">
-                Cambia Password
-              </button>
+              <Link href="/user/change-password">
+                <button className="btn btn-outline btn-sm sm:btn-sm md:btn-md lg:btn-lg mb-8 border-lightblue text-lightblue hover:bg-lightblue hover:text-slate-50 hover:border-darkblue">
+                  Cambia Password
+                </button>
+              </Link>
             </div>
           </form>
         </>
