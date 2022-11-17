@@ -9,19 +9,25 @@ const Navbar: React.FC = () => {
   //TO-DO: Notifiche?
 
   return (
-    <div className="navbar bg-darkred shadow-xl text-slate-50">
-      <h1 className="navbar-start px-12 py-6 font-bold text-4xl tracking-tight">
-        FlowBook
+    <div className="navbar z-10 bg-darkred shadow-xl text-slate-50">
+      <h1 className="navbar-start text-sand px-12 py-6 font-bold text-4xl tracking-tight">
+        <Link href={userData?.isLoggedIn ? "/user/dashboard" : "/"}>
+          FlowBook
+        </Link>
       </h1>
-      <div className="navbar-end pr-24">
+      <div className="navbar-end text-sand pr-24">
         {!userData?.isLoggedIn ? (
-          <ul className="flex text-lg font-semibold font-serif">
-            <li className="pr-8 hover:text-lightblue">
-              <Link href="/login">Accedi</Link>
-            </li>
-            <li className="hover:text-lightblue">
-              <Link href="/signup">Registrati</Link>
-            </li>
+          <ul className="flex text-lg font-semibold">
+            <Link href="/login">
+              <li className="px-4 py-2 mx-4 hover:bg-lightblue hover:text-darkblue border rounded-full">
+                Accedi
+              </li>
+            </Link>
+            <Link href="/signup">
+              <li className="hover:bg-lightblue hover:text-darkblue border px-4 py-2 mx-4 rounded-full">
+                Registrati
+              </li>
+            </Link>
           </ul>
         ) : null}
         {userData?.isLoggedIn ? (

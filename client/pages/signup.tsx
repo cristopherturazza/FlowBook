@@ -67,6 +67,7 @@ const Signup: React.FC = () => {
       <form
         className="flex flex-col mt-6 form-control min-w-[400px]"
         onSubmit={handleSubmit}
+        autoComplete="off"
       >
         <div className="grid grid-cols-2 gap-6 ">
           <div className="flex flex-col">

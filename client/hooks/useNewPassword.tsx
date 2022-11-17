@@ -6,6 +6,8 @@ import { useAuthContext } from "./useAuthContext";
 export const useNewPassword = () => {
   const { userData, dispatch } = useAuthContext();
 
+  const router = useRouter();
+
   const [error, setError] = useState("");
   const [isError, setIsError] = useState(false);
   const [isDone, setIsDone] = useState(false);
@@ -29,6 +31,8 @@ export const useNewPassword = () => {
       );
       setTimeout(() => setIsLoading(false), 1500);
       setTimeout(() => setIsDone(true), 1501);
+      setTimeout(() => dispatch({ type: "LOGOUT" }), 4000);
+      setTimeout(() => router.push("/login"), 4001);
     } catch (error: any) {
       setTimeout(() => setIsLoading(false), 1500);
       setTimeout(() => setIsError(true), 1501);

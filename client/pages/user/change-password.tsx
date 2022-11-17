@@ -18,8 +18,6 @@ const ChangePassword: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     await updatePassword(password);
-    dispatch({ type: "LOGOUT" });
-    router.push("/login");
   };
 
   useEffect(() => {
@@ -103,6 +101,47 @@ const ChangePassword: React.FC = () => {
           La password deve contenere almeno 8 caratteri, minimo una lettera
           maiuscola, almeno un numero e almeno un simbolo.
         </small>
+        {isError ? (
+          <div className="alert alert-error shadow-lg my-4 text-slate-50 bg-scarletred">
+            <div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="stroke-current flex-shrink-0 h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+              <span>Errore! {error} </span>
+            </div>
+          </div>
+        ) : null}
+        {isDone ? (
+          <div className="alert alert-success shadow-lg my-4">
+            <div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="stroke-current flex-shrink-0 h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+              <span>Password modificata! Effettua nuovamente il login</span>
+            </div>
+          </div>
+        ) : null}
+
         <div className="flex flex-col items-center justify-center mt-1">
           <button
             disabled={isLoading}

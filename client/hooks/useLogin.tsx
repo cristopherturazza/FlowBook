@@ -33,7 +33,7 @@ export const useLogin = () => {
 
       setTimeout(() => setIsLoading(false), 1200);
       setTimeout(() => dispatch({ type: "LOGIN", payload: user }), 1201);
-      setTimeout(() => router.push("/"), 1202);
+      setTimeout(() => router.push("/user/dashboard"), 1202);
     } catch (error: any) {
       setTimeout(() => setIsLoading(false), 1200);
       setTimeout(() => setIsError(true), 1201);
