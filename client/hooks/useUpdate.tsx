@@ -27,7 +27,7 @@ export const useUpdate = () => {
 
     try {
       const response = await axios.patch(
-        `http://localhost:3000/api/users/${userData?.id}`,
+        `${process.env.NEXT_PUBLIC_API_PATH}/api/users/${userData?.id}`,
         { ...update },
         {
           headers: {

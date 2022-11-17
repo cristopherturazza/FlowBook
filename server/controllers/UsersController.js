@@ -46,7 +46,7 @@ const getUserData = async (req, res) => {
   try {
     const user = await User.findById(id);
     user.password = undefined;
-    res.status(201).json(user);
+    res.status(200).json(user);
   } catch (err) {
     res.status(400).json({ error: err.message });
     console.log(err.message);

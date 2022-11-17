@@ -31,11 +31,11 @@ const Navbar: React.FC = () => {
           </ul>
         ) : null}
         {userData?.isLoggedIn ? (
-          <ul className="flex text-lg font-semibold font-serif">
-            <li className="hover:text-lightblue">
+          <ul className="flex text-lg font-semibold">
+            <li className="px-4 py-2 mx-4 hover:bg-lightblue hover:text-darkblue border rounded-full">
               <Link href="/user/your-account">Il tuo profilo</Link>
             </li>
-            <li className="pl-8 hover:text-lightblue">
+            <li className="hover:bg-lightblue hover:text-darkblue border px-4 py-2 mx-4 rounded-full">
               <button onClick={() => logout()}>Logout</button>
             </li>
           </ul>

@@ -27,7 +27,7 @@ export const useSignup = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/users/signup",
+        `${process.env.NEXT_PUBLIC_API_PATH}/api/users/signup`,
         { email, password, fullname, gender, birthdate, city },
         {
           headers: {

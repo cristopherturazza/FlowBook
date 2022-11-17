@@ -17,7 +17,7 @@ export const useLogin = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/users/login",
+        `${process.env.NEXT_PUBLIC_API_PATH}/api/users/login`,
         { email, password },
         {
           headers: {

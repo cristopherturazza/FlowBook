@@ -139,7 +139,7 @@ describe("Users Controllers Routes", () => {
       .then((response) => {
         expect(response.body).toEqual(
           expect.objectContaining({
-            error: "Incorrect password",
+            error: "Password errata",
           })
         );
       });
@@ -158,7 +158,35 @@ describe("Users Controllers Routes", () => {
       .then((response) => {
         expect(response.body).toEqual(
           expect.objectContaining({
-            error: "Incorrect or unregistered email",
+            error: "Email errata o utente non registrato",
+          })
+        );
+      });
+  });
+
+  it("reply with the user data correctly sending the token", async () => {
+    const testUser = {
+      email: "maxgood@gmail.com",
+      password: "123Starsarebig!",
+    };
+    const user = await request
+      .post("/api/users/login")
+      .send(testUser)
+      .then((res) => {
+        return res.body;
+      });
+    return await request
+      .get(`/api/users/${user.id}`)
+      .set("Authorization", `Bearer ${user.token}`)
+      .expect("Content-Type", /json/)
+      .expect(200)
+      .then((response) => {
+        expect(response.body).toEqual(
+          expect.objectContaining({
+            email: "maxgood@gmail.com",
+            fullname: "Max Good",
+            gender: "Male",
+            birthdate: "08/08/1986",
           })
         );
       });

@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { useAuthContext } from "../hooks/useAuthContext";
+import { useRouter } from "next/router";
 import { useSignup } from "../hooks/useSignup";
 import axios from "axios";
 import type { HintCity } from "../types/HintCity";
@@ -15,6 +17,13 @@ const Signup: React.FC = () => {
   const [hintCities, setHintCities] = useState<Array<HintCity>>([]);
   const [selectedCity, setSelectedCity] = useState<HintCity>();
   const { signup, error, isError, isLoading, isDone } = useSignup();
+
+  const { userData } = useAuthContext();
+  const router = useRouter();
+
+  useEffect(() => {
+    userData?.isLoggedIn === true ? router.push("/user/dashboard") : null;
+  }, [userData]);
 
   const handleCity = (city: HintCity) => {
     if (typeof city.city === "string") {

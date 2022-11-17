@@ -1,12 +1,20 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLogin } from "../hooks/useLogin";
-import Layout from "../components/Layout";
+import { useAuthContext } from "../hooks/useAuthContext";
+import { useRouter } from "next/router";
 import Link from "next/link";
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { login, error, isError, isLoading } = useLogin();
+
+  const { userData } = useAuthContext();
+  const router = useRouter();
+
+  useEffect(() => {
+    userData?.isLoggedIn === true ? router.push("/user/dashboard") : null;
+  }, [userData]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
