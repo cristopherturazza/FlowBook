@@ -1,7 +1,12 @@
 import Link from "next/link";
 import { useLogout } from "../hooks/useLogout";
 
-const Sidebar: React.FC = ({ menuToggle, setMenuToggle }) => {
+interface IMenu {
+  menuToggle: boolean;
+  setMenuToggle: (id: boolean) => void;
+}
+
+const Sidebar: React.FC<IMenu> = ({ menuToggle, setMenuToggle }) => {
   const { logout } = useLogout();
   return (
     <ul className="mt-4 font-semibold text-lg">

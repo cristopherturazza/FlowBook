@@ -1,7 +1,12 @@
 import Link from "next/link";
 import { useAuthContext } from "../hooks/useAuthContext";
 
-const Navbar: React.FC = ({ menuToggle, setMenuToggle }) => {
+interface IMenu {
+  menuToggle: boolean;
+  setMenuToggle: (id: boolean) => void;
+}
+
+const Navbar: React.FC<IMenu> = ({ menuToggle, setMenuToggle }) => {
   const { userData } = useAuthContext();
 
   //TO-DO: Notifiche?
