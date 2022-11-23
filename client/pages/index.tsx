@@ -17,7 +17,7 @@ const Home: React.FC = () => {
         <div className="flex justify-center w-full my-16">
           <Link
             href="/login"
-            className="my-8 btn btn-sm sm:btn-sm md:btn-md lg:btn-lg bg-sand text-darkblue hover:bg-lightblue"
+            className="my-8 btn btn-sm sm:btn-sm md:btn-md lg:btn-lg bg-scarletred text-sand hover:bg-darkred"
           >
             Accedi
           </Link>

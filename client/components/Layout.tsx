@@ -18,7 +18,8 @@ const Layout: React.FC<PropsWithChildren> = ({ children }) => {
 
         {userData?.isLoggedIn ||
         router.asPath === "/login" ||
-        router.asPath === "/signup" ? (
+        router.asPath === "/signup" ||
+        router.asPath === "/" ? (
           <div className="flex justify-center">{children}</div>
         ) : (
           <div className="flex flex-col items-center ">
