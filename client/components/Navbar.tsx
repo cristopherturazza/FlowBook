@@ -22,12 +22,40 @@ const Navbar: React.FC<IMenu> = ({ menuToggle, setMenuToggle }) => {
         {!userData?.isLoggedIn ? (
           <ul className="flex text-lg font-semibold">
             <Link href="/login">
-              <li className="px-4 py-2 mx-4 hover:bg-lightblue hover:text-darkblue border rounded-full">
+              <li className="flex items-center px-4 py-2 mx-2 btn-ghost border rounded-full">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-4 h-4 mr-2"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M15.75 5.25a3 3 0 013 3m3 0a6 6 0 01-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1121.75 8.25z"
+                  />
+                </svg>
                 Accedi
               </li>
             </Link>
             <Link href="/signup">
-              <li className="hover:bg-lightblue hover:text-darkblue border px-4 py-2 mx-4 rounded-full">
+              <li className="flex items-center btn-ghost border px-4 py-2 mx-2 rounded-full">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-4 h-4 mr-2"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z"
+                  />
+                </svg>
                 Registrati
               </li>
             </Link>
@@ -39,7 +67,7 @@ const Navbar: React.FC<IMenu> = ({ menuToggle, setMenuToggle }) => {
               className="btn btn-square btn-ghost"
               onClick={() => setMenuToggle(!menuToggle)}
             >
-              {menuToggle ? (
+              {!menuToggle ? (
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"

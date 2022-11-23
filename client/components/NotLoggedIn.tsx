@@ -3,9 +3,9 @@ import Link from "next/link";
 const NotLoggedIn: React.FC = () => {
   return (
     <>
-      <h4 className="text-3xl font-semibold mt-20 text-darkblue tracking-tighter">
+      <h4 className="text-3xl mt-20 text-darkblue tracking-tighter">
         {" "}
-        Devi effettuare il login per visualizzare il tuo profilo
+        Devi effettuare il login per visualizzare questa pagina
       </h4>
       <Link
         href="/login"

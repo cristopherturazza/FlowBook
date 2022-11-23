@@ -11,7 +11,7 @@ const Sidebar: React.FC<IMenu> = ({ menuToggle, setMenuToggle }) => {
   return (
     <ul className="mt-4 font-semibold text-lg">
       <Link href="/user/your-books" onClick={() => setMenuToggle(!menuToggle)}>
-        <li className="flex py-3 pl-3 pr-12 items-center rounded-lg cursor-pointer hover:bg-scarletred active:bg-lightblue transition-all duration-100 ease-in-out select-none">
+        <li className="flex py-3 pl-3 pr-12 items-center rounded-lg cursor-pointer btn-ghost active:bg-lightblue transition-all duration-100 ease-in-out select-none">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -33,7 +33,7 @@ const Sidebar: React.FC<IMenu> = ({ menuToggle, setMenuToggle }) => {
         href="/user/your-exchange"
         onClick={() => setMenuToggle(!menuToggle)}
       >
-        <li className="flex py-3 pl-3 pr-12 rounded-lg items-center cursor-pointer hover:bg-scarletred active:bg-lightblue transition-all duration-100 ease-in-out select-none">
+        <li className="flex py-3 pl-3 pr-12 rounded-lg items-center cursor-pointer btn-ghost active:bg-lightblue transition-all duration-100 ease-in-out select-none">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -55,7 +55,7 @@ const Sidebar: React.FC<IMenu> = ({ menuToggle, setMenuToggle }) => {
         href="/user/your-account"
         onClick={() => setMenuToggle(!menuToggle)}
       >
-        <li className="flex py-3 pl-3 pr-12 rounded-lg items-center cursor-pointer hover:bg-scarletred active:bg-lightblue transition-all duration-100 ease-in-out select-none">
+        <li className="flex py-3 pl-3 pr-12 rounded-lg items-center cursor-pointer btn-ghost active:bg-lightblue transition-all duration-100 ease-in-out select-none">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -74,7 +74,7 @@ const Sidebar: React.FC<IMenu> = ({ menuToggle, setMenuToggle }) => {
         </li>
       </Link>
       <li
-        className="flex py-3 pl-3 pr-12 rounded-lg items-center cursor-pointer hover:bg-scarletred active:bg-lightblue transition-all duration-100 ease-in-out select-none"
+        className="flex py-3 pl-3 pr-12 rounded-lg items-center cursor-pointer btn-ghost active:bg-lightblue transition-all duration-100 ease-in-out select-none"
         onClick={() => {
           setMenuToggle(!menuToggle);
           logout();
