@@ -76,7 +76,7 @@ const Signup: React.FC = () => {
       <form
         className="flex flex-col mt-6 form-control min-w-[400px]"
         onSubmit={handleSubmit}
-        autoComplete="off"
+        autoComplete="new-password"
       >
         <div className="grid grid-cols-2 gap-6 ">
           <div className="flex flex-col">
@@ -112,6 +112,7 @@ const Signup: React.FC = () => {
               onChange={(e) => setPassword(e.target.value)}
               value={password}
               placeholder="Richiesto"
+              autoComplete="new-password"
               className={`input input-bordered w-full bg-slate-100 focus:outline-lightblue ${
                 errorPasswordCheck
                   ? "outline-scarletred focus:outline-scarletred"
