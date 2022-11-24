@@ -56,7 +56,7 @@ const AddBooks: React.FC = () => {
             </small>
           </div>
           <div className="flex flex-col ml-16">
-            <div className="grid grid-cols-2 gap-4 -mt-16">
+            <div className="grid grid-cols-2 gap-4">
               <label className="flex flex-col items-start label font-serif text-lg font-semibold text-darkblue">
                 Titolo
                 <input
@@ -93,10 +93,12 @@ const AddBooks: React.FC = () => {
                   className="select select-bordered mt-4 bg-slate-100 focus:outline-lightblue"
                 >
                   <option value="Come Nuovo">Come Nuovo</option>
-                  <option value="In Buono Stato">In Buono Stato</option>
-                  <option value="Con Segni di Usura">Con Segni di Usura</option>
-                  <option value="Rovinato">Rovinato</option>
-                  <option value="Incompleto">Incompleto</option>
+                  <option value="Leggeri Segni di Usura">
+                    Leggeri Segni di Usura
+                  </option>
+                  <option value="Gravi Segni di Usura">
+                    Gravi Segni di Usura
+                  </option>
                 </select>
               </label>
             </div>
