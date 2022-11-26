@@ -5,16 +5,6 @@ import { useRouter } from "next/router";
 const UserBooks: React.FC = () => {
   const router = useRouter();
 
-  useEffect(() => {
-    const fetchBook = async () => {
-      const fetch = await axios.get(
-        "https://www.googleapis.com/books/v1/volumes?q=+isbn:9788820066932"
-      );
-      console.log(fetch.data.items);
-    };
-    fetchBook();
-  }, []);
-
   return (
     <div className="flex flex-col items-center ">
       <h3 className="text-7xl font-black mt-12 text-darkblue tracking-tighter">

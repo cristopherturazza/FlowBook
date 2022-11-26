@@ -7,6 +7,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 
 const usersRoute = require("./routes/Users");
+const booksRoute = require("./routes/Books");
 
 const app = express();
 
@@ -29,6 +30,7 @@ mongoose.set("sanitizeFilter", true);
 // routes
 
 app.use("/api/users", usersRoute);
+app.use("/api/books", booksRoute);
 
 // error 404
 app.get("*", (req, res) => {

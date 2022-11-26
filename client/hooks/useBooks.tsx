@@ -2,17 +2,17 @@ import { useState } from "react";
 import axios from "axios";
 import { useAuthContext } from "./useAuthContext";
 
-import { HintCity } from "../types/HintCity";
-
-interface userProfile {
-  id: String | undefined;
-  fullname?: String;
-  birthdate?: String;
-  gender?: String;
-  city?: HintCity;
+interface Book {
+  isbn?: string;
+  title: string;
+  author: string;
+  status: string;
+  year: string;
+  category: string;
+  cover?: string;
 }
 
-export const useUpdate = () => {
+export const useBooks = () => {
   const { userData } = useAuthContext();
 
   const [error, setError] = useState("");
@@ -20,14 +20,14 @@ export const useUpdate = () => {
   const [isDone, setIsDone] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const updateProfile = async (update: userProfile) => {
+  const addBook = async (book: Book) => {
     setIsLoading(true);
     setIsError(false);
 
     try {
-      const response = await axios.patch(
-        `${process.env.NEXT_PUBLIC_API_PATH}/api/users/${userData?.id}`,
-        { ...update },
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_PATH}/api/books/`,
+        { owner: userData?.id, ...book },
         {
           headers: {
             "Content-Type": "application/json",
@@ -39,10 +39,11 @@ export const useUpdate = () => {
       setTimeout(() => setIsLoading(false), 1500);
       setTimeout(() => setIsDone(true), 1501);
     } catch (error: any) {
+      console.log(error);
       setTimeout(() => setIsLoading(false), 1500);
       setTimeout(() => setIsError(true), 1501);
       setError(error.response.data.error);
     }
   };
-  return { updateProfile, isLoading, isError, isDone, error };
+  return { addBook, isLoading, isError, isDone, error };
 };
