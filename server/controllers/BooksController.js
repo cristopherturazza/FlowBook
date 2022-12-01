@@ -31,8 +31,20 @@ const deleteBook = async (req, res) => {
   const { id } = req.params;
 
   try {
-    const deleted = await Book.findOneAndDelete(id);
-    res.status(200).json(deleted);
+    const deleted = await Book.findByIdAndDelete(id);
+    res.status(204).json(deleted);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+    console.log(err.message);
+  }
+};
+
+const getUserBooks = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const userBooks = await Book.find({ owner: id });
+    res.status(200).json(userBooks);
   } catch (err) {
     res.status(400).json({ error: err.message });
     console.log(err.message);
@@ -42,4 +54,5 @@ const deleteBook = async (req, res) => {
 module.exports = {
   addBook,
   deleteBook,
+  getUserBooks,
 };

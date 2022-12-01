@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useBooks } from "../../hooks/useBooks";
 import axios from "axios";
 import bookPlaceholder from "../../public/book-placeholder.png";
+import { useRouter } from "next/router";
 
 interface Book {
   isbn?: string;
@@ -23,11 +24,20 @@ const AddBooks: React.FC = () => {
   const [category, setCategory] = useState("");
   const [cover, setCover] = useState("");
   const [isSearching, setIsSearching] = useState(false);
+  const [isSearchingError, setIsSearchingError] = useState(false);
 
   const { addBook, isLoading, isError, isDone, error } = useBooks();
 
+  const router = useRouter();
+
+  const handleGoBack = (e: React.FormEvent) => {
+    e.preventDefault();
+    router.push("/user/your-books");
+  };
+
   const handleFetchBook = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSearchingError(false);
     setIsSearching(true);
 
     if (isbn) {
@@ -41,7 +51,9 @@ const AddBooks: React.FC = () => {
         setYear(volumeData.publishedDate ?? "");
         setCover(volumeData.imageLinks.thumbnail ?? "");
         setIsSearching(false);
-      } catch (err) {
+      } catch (err: any) {
+        setIsSearching(false);
+        setIsSearchingError(true);
         console.log(err);
       }
     }
@@ -71,6 +83,7 @@ const AddBooks: React.FC = () => {
     setCategory("");
     setStatus("");
     setCover("");
+    setIsSearchingError(false);
   };
 
   const handleClearAll = (e: React.FormEvent) => {
@@ -99,6 +112,7 @@ const AddBooks: React.FC = () => {
               value={isbn}
               className="input input-bordered  min-w-[30ch] bg-slate-100 focus:outline-lightblue"
               placeholder="Inserisci un ISBN a 13 cifre..."
+              autoFocus
             />
             <button
               className="flex p-3 ml-4 bg-darkblue text-white rounded-lg items-center hover:bg-lightblue transition-all duration-100 ease-in-out select-none"
@@ -132,7 +146,7 @@ const AddBooks: React.FC = () => {
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
-                  strokeWidth={1.5}
+                  strokeWidth={2}
                   stroke="currentColor"
                   className="w-5 h-5"
                 >
@@ -152,7 +166,7 @@ const AddBooks: React.FC = () => {
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
-                strokeWidth={1.5}
+                strokeWidth={2}
                 stroke="currentColor"
                 className="w-6 h-6"
               >
@@ -164,7 +178,14 @@ const AddBooks: React.FC = () => {
               </svg>
             </button>
           </div>
+          {isSearchingError ? (
+            <div className="flex text-error font-sans text-xs mt-4">
+              ISBN errato o non disponibile, se il codice è corretto procedi con
+              l'inserimento manuale.
+            </div>
+          ) : null}
         </label>
+
         <div className="divider"></div>
 
         <div className="flex gap-12">
@@ -302,36 +323,59 @@ const AddBooks: React.FC = () => {
           </div>
         ) : null}
         <div className="flex justify-center">
-          <button
-            disabled={isLoading}
-            className="mb-12 mt-8 btn btn-sm sm:btn-sm md:btn-md lg:btn-lg bg-darkblue hover:bg-lightblue text-slate-50"
-          >
-            {isLoading ? (
-              <div>
-                <svg
-                  className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                >
-                  <circle
-                    className="opacity-25"
-                    cx="12"
-                    cy="12"
-                    r="10"
-                    stroke="currentColor"
-                    strokeWidth="4"
-                  ></circle>
-                  <path
-                    className="opacity-75"
-                    fill="currentColor"
-                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                  ></path>
-                </svg>
-              </div>
-            ) : null}
-            Aggiungi al tuo scaffale
-          </button>
+          {!isDone ? (
+            <button
+              disabled={isLoading}
+              className="mb-12 mt-8 btn btn-sm sm:btn-sm md:btn-md lg:btn-lg bg-darkblue hover:bg-lightblue text-slate-50"
+            >
+              {isLoading ? (
+                <div>
+                  <svg
+                    className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                    ></circle>
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                    ></path>
+                  </svg>
+                </div>
+              ) : null}
+              Aggiungi al tuo scaffale
+            </button>
+          ) : (
+            <button
+              className="mb-12 mt-8 btn btn-sm sm:btn-sm md:btn-md lg:btn-lg bg-darkblue hover:bg-lightblue text-slate-50"
+              onClick={handleGoBack}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={3}
+                stroke="currentColor"
+                className="w-5 h-5 mr-4"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M15.75 19.5L8.25 12l7.5-7.5"
+                />
+              </svg>
+              Torna ai tuoi libri
+            </button>
+          )}
         </div>
       </form>
     </div>
