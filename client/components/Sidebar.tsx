@@ -9,7 +9,26 @@ interface IMenu {
 const Sidebar: React.FC<IMenu> = ({ menuToggle, setMenuToggle }) => {
   const { logout } = useLogout();
   return (
-    <ul className="mt-4 font-semibold text-lg">
+    <ul className="mt-4 font-semibold text-lg z-50">
+      <Link href="/user/dashboard" onClick={() => setMenuToggle(!menuToggle)}>
+        <li className="flex py-3 pl-3 pr-12 items-center rounded-lg cursor-pointer btn-ghost active:bg-lightblue transition-all duration-100 ease-in-out select-none">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="w-5 h-5 mr-2"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+            />
+          </svg>
+          Cerca nel flusso
+        </li>
+      </Link>
       <Link href="/user/your-books" onClick={() => setMenuToggle(!menuToggle)}>
         <li className="flex py-3 pl-3 pr-12 items-center rounded-lg cursor-pointer btn-ghost active:bg-lightblue transition-all duration-100 ease-in-out select-none">
           <svg

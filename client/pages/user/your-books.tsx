@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useBooks } from "../../hooks/useBooks";
 import UserBook from "../../components/UserBook";
+import Loading from "../../components/Loading";
 
 import type { Book } from "../../types/Book";
 
@@ -22,36 +23,13 @@ const UserBooks: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center ">
-      <h3 className="text-7xl font-black mt-12 text-darkblue tracking-tighter">
+      <h3 className="text-5xl xl:text-7xl font-black mt-12 text-darkblue tracking-tighter">
         {" "}
         I tuoi libri{" "}
       </h3>
-      {isLoading ? (
-        <div>
-          <svg
-            className="animate-spin mt-20 h-16 w-16 text-darkblue"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-          >
-            <circle
-              className="opacity-25"
-              cx="12"
-              cy="12"
-              r="10"
-              stroke="currentColor"
-              strokeWidth="4"
-            ></circle>
-            <path
-              className="opacity-75"
-              fill="currentColor"
-              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-            ></path>
-          </svg>
-        </div>
-      ) : null}
+      {isLoading ? <Loading /> : null}
       {userBooks.length > 0 && !isLoading ? (
-        <div className="grid grid-cols-3 place-items-center gap-16 mt-20">
+        <div className="xl:grid xl:grid-cols-3 place-items-center xl:gap-16 mt-20">
           {userBooks.map((book) => (
             <UserBook
               title={book.title}

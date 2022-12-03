@@ -1,14 +1,19 @@
 import Image from "next/image";
 import bookPlaceholder from "../public/book-placeholder.png";
+import { useRouter } from "next/router";
 
 import type { userBook } from "../types/userBook";
 
 const UserBook: React.FC<userBook> = (props) => {
+  const router = useRouter();
   return (
-    <div className="flex flex-col relative w-48 shadow-md rounded-md custom-container-card">
+    <div className="flex flex-col relative w-48 shadow-md rounded-md custom-container-card mb-16 xl:mb-0">
       <div className="absolute flex flex-col items-center justify-center opacity-0 z-10 custom-card-buttons transition-opacity duration-300 overflow-hidden w-full h-full">
         <div className="flex gap-6">
-          <div className="bg-darkblue p-2 rounded-md text-white cursor-pointer hover:bg-lightblue">
+          <div
+            className="bg-darkblue p-2 rounded-md text-white cursor-pointer btn hover:bg-lightblue"
+            onClick={() => router.push(`/books/${props.id}`)}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -30,7 +35,7 @@ const UserBook: React.FC<userBook> = (props) => {
             </svg>
           </div>
           <div
-            className="bg-scarletred p-2 rounded-md text-white cursor-pointer hover:bg-darkred"
+            className="bg-scarletred p-2 rounded-md text-white cursor-pointer btn hover:bg-darkred"
             onClick={() => props.removeBook(props.id)}
           >
             <svg

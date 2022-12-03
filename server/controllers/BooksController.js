@@ -51,8 +51,36 @@ const getUserBooks = async (req, res) => {
   }
 };
 
+const getBooks = async (req, res) => {
+  try {
+    const books = await Book.find().populate({
+      path: "owner",
+      select: "_id fullname city",
+    });
+    res.status(200).json(books);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+    console.log(err.message);
+  }
+};
+
+const getSingleBook = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const book = await Book.findById(id).populate({
+      path: "owner",
+      select: "_id fullname city",
+    });
+    res.status(200).json(book);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+    console.log(err.message);
+  }
+};
 module.exports = {
   addBook,
   deleteBook,
+  getBooks,
   getUserBooks,
+  getSingleBook,
 };
