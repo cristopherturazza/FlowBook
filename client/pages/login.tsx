@@ -24,11 +24,11 @@ const Login: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center ">
-      <h3 className="text-7xl font-black mt-12 text-darkblue tracking-tighter">
+      <h3 className="text-5xl xl:text-7xl font-black mt-12 text-darkblue tracking-tighter">
         Oh, rieccoti!
       </h3>
       <form
-        className="flex flex-col mt-4 form-control min-w-[400px]"
+        className="flex flex-col mt-4 form-control min-w-[250px] xl:min-w-[400px]"
         onSubmit={handleSubmit}
       >
         <label className="label font-serif text-lg font-semibold text-darkblue">
@@ -74,7 +74,7 @@ const Login: React.FC = () => {
         <div className="flex justify-center">
           <button
             disabled={isLoading}
-            className="mt-2 btn btn-sm sm:btn-sm md:btn-md lg:btn-lg bg-darkblue hover:bg-lightblue text-slate-50"
+            className="mt-2 btn btn-md md:btn-md lg:btn-lg bg-darkblue hover:bg-lightblue text-slate-50"
           >
             {isLoading ? (
               <div>
@@ -106,7 +106,7 @@ const Login: React.FC = () => {
       </form>
       <p className="mt-4 font-serif"> oppure </p>
       <Link href="/signup">
-        <button className="btn btn-outline btn-sm sm:btn-sm md:btn-md mt-4 mb-8 border-lightblue text-lightblue hover:bg-lightblue hover:text-slate-50 hover:border-darkblue">
+        <button className="btn btn-outline btn-md md:btn-md mt-4 mb-8 border-lightblue text-lightblue hover:bg-lightblue hover:text-slate-50 hover:border-darkblue">
           Registrati
         </button>
       </Link>

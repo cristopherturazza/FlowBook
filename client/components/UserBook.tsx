@@ -7,8 +7,20 @@ import type { userBook } from "../types/userBook";
 const UserBook: React.FC<userBook> = (props) => {
   const router = useRouter();
   return (
-    <div className="flex flex-col relative w-48 shadow-md rounded-md custom-container-card mb-16 xl:mb-0">
-      <div className="absolute flex flex-col items-center justify-center opacity-0 z-10 custom-card-buttons transition-opacity duration-300 overflow-hidden w-full h-full">
+    <div className="flex flex-col relative w-48  mb-16 xl:mb-0">
+      <div className="flex flex-col items-center custom-card-fade transition-opacity duration-300">
+        <Image
+          src={props.cover && props.cover != "" ? props.cover : bookPlaceholder}
+          alt={props.title}
+          width={250}
+          height={250}
+          className="rounded-md shadow-md"
+        ></Image>
+      </div>
+      <div className="flex flex-col items-center justify-center z-10 transition-opacity duration-300 overflow-hidden w-full h-full">
+        <h3 className="my-4 mx-2 font-bold text-xl leading-tight drop-shadow-xl text-center">
+          {props.title}
+        </h3>
         <div className="flex gap-6">
           <div
             className="bg-darkblue p-2 rounded-md text-white cursor-pointer btn hover:bg-lightblue"
@@ -54,18 +66,6 @@ const UserBook: React.FC<userBook> = (props) => {
             </svg>
           </div>
         </div>
-        <h3 className="mt-4 mx-2 font-bold text-xl leading-tight drop-shadow-xl text-center">
-          {props.title}
-        </h3>
-      </div>
-      <div className="flex flex-col items-center custom-card-fade transition-opacity duration-300">
-        <Image
-          src={props.cover && props.cover != "" ? props.cover : bookPlaceholder}
-          alt={props.title}
-          width={250}
-          height={250}
-          className="rounded-md"
-        ></Image>
       </div>
     </div>
   );

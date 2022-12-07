@@ -70,15 +70,15 @@ const Signup: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center ">
-      <h3 className="text-7xl font-black mt-8 text-darkblue tracking-tighter">
+      <h3 className="text-5xl xl:text-7xl xl:max-w-none max-w-[9ch] text-center font-black mt-8 text-darkblue tracking-tighter">
         Partecipa al flusso
       </h3>
       <form
-        className="flex flex-col mt-6 form-control min-w-[400px]"
+        className="flex flex-col mt-6 form-control max-w-[250px] xl:max-w-none xl:min-w-[400px]"
         onSubmit={handleSubmit}
         autoComplete="new-password"
       >
-        <div className="grid grid-cols-2 gap-6 ">
+        <div className="xl:grid xl:grid-cols-2 gap-6 ">
           <div className="flex flex-col">
             <label className="label font-serif text-lg font-semibold text-darkblue">
               Email:
@@ -171,7 +171,7 @@ const Signup: React.FC = () => {
           La password deve contenere almeno 8 caratteri, minimo una lettera
           maiuscola, almeno un numero e almeno un simbolo.
         </small>
-        <div className="grid grid-cols-3 gap-2 mt-4">
+        <div className="xl:grid xl:grid-cols-3 gap-2 my-4">
           <div className="flex flex-col dropdown dropdown-bottom mb-8">
             <label className="label font-serif text-lg font-semibold text-darkblue">
               Città:
@@ -209,7 +209,7 @@ const Signup: React.FC = () => {
               )}
             </div>
           </div>
-          <div className="flex flex-col">
+          <div className="flex flex-col items-center xl:items-start  ">
             <label className="label font-serif text-lg font-semibold text-darkblue">
               Genere:
             </label>
@@ -302,10 +302,10 @@ const Signup: React.FC = () => {
             </div>
           </div>
         ) : null}
-        <div className="flex flex-col items-center justify-center mt-1">
+        <div className="flex flex-col items-center justify-center">
           <button
             disabled={isLoading}
-            className="mb-8 btn btn-sm sm:btn-sm md:btn-md lg:btn-lg bg-darkblue hover:bg-lightblue text-slate-50"
+            className="mb-8 btn btn-md md:btn-md lg:btn-lg bg-darkblue hover:bg-lightblue text-slate-50"
           >
             {isLoading ? (
               <div>

@@ -19,10 +19,3 @@ a {
 * {
   box-sizing: border-box;
 }
-
-.custom-container-card:hover .custom-card-buttons {
-  @apply opacity-100;
-}
-.custom-container-card:hover .custom-card-fade {
-  @apply opacity-20;
-}

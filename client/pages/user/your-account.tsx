@@ -94,14 +94,14 @@ const UserProfile: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center ">
-      <h3 className="text-7xl font-black mt-12 text-darkblue tracking-tighter">
+      <h3 className="text-5xl xl:text-7xl font-black mt-12 text-darkblue tracking-tighter">
         Il tuo profilo
       </h3>
       <form
-        className="flex flex-col mt-6 form-control min-w-[400px]"
+        className="flex flex-col mt-6 form-control min-w-[250px] xl:min-w-[400px]"
         onSubmit={handleSubmit}
       >
-        <div className="grid grid-cols-2 gap-6 ">
+        <div className="xl:grid xl:grid-cols-2 gap-6 ">
           <div className="flex flex-col">
             <label className="label font-serif text-lg font-semibold text-darkblue">
               Email:
@@ -126,8 +126,8 @@ const UserProfile: React.FC = () => {
             />
           </div>
         </div>
-        <div className="grid grid-cols-3 gap-2 mt-4">
-          <div className="flex flex-col dropdown dropdown-bottom mb-8">
+        <div className="xl:grid xl:grid-cols-3 gap-2 xl:mt-4 mb-4">
+          <div className="flex flex-col dropdown dropdown-bottom xl:mb-8">
             <label className="label font-serif text-lg font-semibold text-darkblue">
               Città:
             </label>
@@ -257,10 +257,10 @@ const UserProfile: React.FC = () => {
           </div>
         ) : null}
 
-        <div className="flex items-center justify-center mt-4">
+        <div className="flex flex-col xl:flex-row items-center justify-center my-4">
           <button
             disabled={isLoading}
-            className="mb-8 mr-8 btn btn-sm sm:btn-sm md:btn-md lg:btn-lg bg-darkblue hover:bg-lightblue text-slate-50"
+            className="mb-8 xl:mr-8 btn btn-md md:btn-md lg:btn-lg bg-darkblue hover:bg-lightblue text-slate-50"
           >
             {isLoading ? (
               <div>
@@ -289,7 +289,7 @@ const UserProfile: React.FC = () => {
             Aggiorna i dati
           </button>
           <Link href="/user/change-password">
-            <button className="btn btn-outline btn-sm sm:btn-sm md:btn-md lg:btn-lg mb-8 border-lightblue text-lightblue hover:bg-lightblue hover:text-slate-50 hover:border-darkblue">
+            <button className="btn btn-outline btn-md md:btn-md lg:btn-lg mb-8 border-lightblue text-lightblue hover:bg-lightblue hover:text-slate-50 hover:border-darkblue">
               Cambia Password
             </button>
           </Link>

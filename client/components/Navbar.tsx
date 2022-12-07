@@ -12,13 +12,13 @@ const Navbar: React.FC<IMenu> = ({ menuToggle, setMenuToggle }) => {
   //TO-DO: Notifiche?
 
   return (
-    <div className="navbar z-10 h-24 bg-darkred shadow-xl text-slate-50">
-      <h1 className="navbar-start text-sand px-6 xl:px-12 py-6 font-bold text-2xl xl:text-4xl tracking-tight">
+    <div className="navbar z-50 h-24 bg-darkred shadow-xl text-slate-50">
+      <h1 className="navbar-start text-sand px-6 xl:px-16 py-6 font-bold text-2xl xl:text-4xl tracking-tight">
         <Link href={userData?.isLoggedIn ? "/user/dashboard" : "/"}>
           FlowBook
         </Link>
       </h1>
-      <div className="navbar-end text-sand pr-4 xl:pr-24">
+      <div className="navbar-end text-sand pr-4 xl:pr-16">
         {!userData?.isLoggedIn ? (
           <ul className="flex text-lg font-semibold">
             <Link href="/login">

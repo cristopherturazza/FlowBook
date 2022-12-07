@@ -26,7 +26,7 @@ const AddBooks: React.FC = () => {
   const [isSearching, setIsSearching] = useState(false);
   const [isSearchingError, setIsSearchingError] = useState(false);
 
-  const { addBook, isLoading, isError, isDone, error } = useBooks();
+  const { addBook, isLoading, isError, setIsDone, isDone, error } = useBooks();
 
   const router = useRouter();
 
@@ -38,16 +38,16 @@ const AddBooks: React.FC = () => {
   const handleFetchBook = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSearchingError(false);
-    setIsSearching(true);
 
     if (isbn) {
       try {
+        setIsSearching(true);
         const fetch = await axios.get(
           `https://www.googleapis.com/books/v1/volumes?q=+isbn:${isbn}`
         );
         const volumeData = fetch.data.items[0].volumeInfo;
         setTitle(volumeData.title ?? "");
-        setAuthor(volumeData.authors.toLocaleString() ?? "");
+        setAuthor(volumeData.authors.join(", ") ?? "");
         setYear(volumeData.publishedDate ?? "");
         setCover(volumeData.imageLinks.thumbnail ?? "");
         setIsSearching(false);
@@ -84,6 +84,7 @@ const AddBooks: React.FC = () => {
     setStatus("");
     setCover("");
     setIsSearchingError(false);
+    setIsDone(false);
   };
 
   const handleClearAll = (e: React.FormEvent) => {
@@ -92,20 +93,21 @@ const AddBooks: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-center ">
-      <h3 className="text-7xl font-black mt-12 text-darkblue tracking-tighter">
+    <div className="flex flex-col items-center">
+      <h3 className="text-4xl xl:text-7xl font-black mt-12 text-darkblue tracking-tighter">
         Aggiungi un libro
       </h3>
-      <h5 className="mt-8 text-lg font-serif">
+      <p className="mt-8 mx-12 text-sm xl:text-lg text-center font-serif">
         Cerca il tuo libro tramite il codice ISBN o inserisci i dati
         manualmente.
-      </h5>
+      </p>
       <form
-        className="flex flex-col mt-4 form-control min-w-[400px]"
+        className="flex flex-col mt-4 form-control min-w-[250px] xl:min-w-[400px]"
         onSubmit={handleSubmit}
+        autoComplete="off"
       >
         <label className="flex flex-col items-center label font-serif text-lg font-semibold text-darkblue">
-          <div className="flex mt-4">
+          <div className="flex flex-col xl:flex-row mt-4">
             <input
               type="text"
               onChange={(e) => setIsbn(e.target.value)}
@@ -113,35 +115,57 @@ const AddBooks: React.FC = () => {
               className="input input-bordered  min-w-[30ch] bg-slate-100 focus:outline-lightblue"
               placeholder="Inserisci un ISBN a 13 cifre..."
               autoFocus
+              autoComplete="off"
             />
-            <button
-              className="flex p-3 ml-4 bg-darkblue text-white rounded-lg items-center hover:bg-lightblue transition-all duration-100 ease-in-out select-none"
-              onClick={(e) => handleFetchBook(e)}
-            >
-              {isSearching ? (
-                <div>
+            <div className="flex mt-4 xl:mt-0 justify-center">
+              <button
+                className="flex p-3 xl:ml-4 bg-darkblue text-white rounded-lg items-center hover:bg-lightblue transition-all duration-100 ease-in-out select-none"
+                onClick={(e) => handleFetchBook(e)}
+              >
+                {isSearching ? (
+                  <div>
+                    <svg
+                      className="animate-spin h-5 w-5 text-white"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      ></circle>
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                      ></path>
+                    </svg>
+                  </div>
+                ) : (
                   <svg
-                    className="animate-spin h-5 w-5 text-white"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
+                    strokeWidth={2}
+                    stroke="currentColor"
+                    className="w-5 h-5"
                   >
-                    <circle
-                      className="opacity-25"
-                      cx="12"
-                      cy="12"
-                      r="10"
-                      stroke="currentColor"
-                      strokeWidth="4"
-                    ></circle>
                     <path
-                      className="opacity-75"
-                      fill="currentColor"
-                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                    ></path>
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+                    />
                   </svg>
-                </div>
-              ) : (
+                )}
+              </button>
+              <button
+                className="flex p-3 ml-4 bg-scarletred text-white rounded-lg items-center hover:bg-darkred active:bg-lightblue transition-all duration-100 ease-in-out select-none"
+                onClick={(e) => handleClearAll(e)}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -153,33 +177,14 @@ const AddBooks: React.FC = () => {
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+                    d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
                   />
                 </svg>
-              )}
-            </button>
-            <button
-              className="flex p-3 ml-4 bg-scarletred text-white rounded-lg items-center hover:bg-darkred active:bg-lightblue transition-all duration-100 ease-in-out select-none"
-              onClick={(e) => handleClearAll(e)}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={2}
-                stroke="currentColor"
-                className="w-6 h-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
-                />
-              </svg>
-            </button>
+              </button>
+            </div>
           </div>
           {isSearchingError ? (
-            <div className="flex text-error font-sans text-xs mt-4">
+            <div className="flex text-error text-center font-sans text-xs mt-4">
               ISBN errato o non disponibile, se il codice è corretto procedi con
               l'inserimento manuale.
             </div>
@@ -188,7 +193,7 @@ const AddBooks: React.FC = () => {
 
         <div className="divider"></div>
 
-        <div className="flex gap-12">
+        <div className="flex flex-col items-center xl:flex-row gap-12">
           <div>
             <Image
               src={cover != "" ? cover : bookPlaceholder}
@@ -197,6 +202,9 @@ const AddBooks: React.FC = () => {
               height={188}
               className="shadow-md"
             ></Image>
+            <div className="xl:hidden text-center max-w-[20ch] mt-4 mb-2 font-thin text-xs">
+              *Il caricamento manuale della cover attualmente non è disponibile.
+            </div>
           </div>
           <div>
             <label className="flex flex-col items-start label p-0 font-serif text-lg font-semibold text-darkblue">
@@ -206,7 +214,7 @@ const AddBooks: React.FC = () => {
                 required
                 onChange={(e) => setTitle(e.target.value)}
                 value={title}
-                className="input input-bordered mt-2 bg-slate-100 focus:outline-lightblue min-w-[35ch]"
+                className="input input-bordered mt-2 bg-slate-100 focus:outline-lightblue xl:min-w-[35ch]"
               ></input>
             </label>
             <label className="flex flex-col items-start label p-0 mt-4 font-serif text-lg font-semibold  text-darkblue">
@@ -216,16 +224,16 @@ const AddBooks: React.FC = () => {
                 required
                 onChange={(e) => setAuthor(e.target.value)}
                 value={author}
-                className="input input-bordered mt-2 bg-slate-100 focus:outline-lightblu min-w-[35ch]"
+                className="input input-bordered mt-2 bg-slate-100 focus:outline-lightblu xl:min-w-[35ch]"
               ></input>
             </label>
           </div>
         </div>
-        <div className="mt-4 mb-2 font-thin text-xs">
+        <div className="xl:block hidden mt-4 mb-2 font-thin text-xs">
           *Il caricamento manuale della cover attualmente non è disponibile.
         </div>
 
-        <div className="flex gap-6">
+        <div className="flex flex-col items-center xl:flex-row gap-6">
           <label className="flex flex-col items-start label font-serif text-lg font-semibold text-darkblue">
             Anno
             <input
@@ -233,7 +241,7 @@ const AddBooks: React.FC = () => {
               required
               onChange={(e) => setYear(e.target.value)}
               value={year}
-              className="input input-bordered w-[100px] mt-4 bg-slate-100 focus:outline-lightblue"
+              className="input input-bordered xl:w-[100px] mt-4 bg-slate-100 focus:outline-lightblue"
             ></input>
           </label>
           <label className="flex flex-col items-start label font-serif text-lg font-semibold text-darkblue">
@@ -326,7 +334,7 @@ const AddBooks: React.FC = () => {
           {!isDone ? (
             <button
               disabled={isLoading}
-              className="mb-12 mt-8 btn btn-sm sm:btn-sm md:btn-md lg:btn-lg bg-darkblue hover:bg-lightblue text-slate-50"
+              className="mb-12 mt-8 btn btn-md md:btn-md lg:btn-lg bg-darkblue hover:bg-lightblue text-slate-50"
             >
               {isLoading ? (
                 <div>
@@ -355,26 +363,48 @@ const AddBooks: React.FC = () => {
               Aggiungi al tuo scaffale
             </button>
           ) : (
-            <button
-              className="mb-12 mt-8 btn btn-sm sm:btn-sm md:btn-md lg:btn-lg bg-darkblue hover:bg-lightblue text-slate-50"
-              onClick={handleGoBack}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={3}
-                stroke="currentColor"
-                className="w-5 h-5 mr-4"
+            <div className="flex gap-6">
+              <button
+                className="mb-12 mt-8 btn btn-md md:btn-md lg:btn-lg bg-darkblue hover:bg-lightblue text-slate-50"
+                onClick={handleGoBack}
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M15.75 19.5L8.25 12l7.5-7.5"
-                />
-              </svg>
-              Torna ai tuoi libri
-            </button>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={3}
+                  stroke="currentColor"
+                  className="w-5 h-5 mr-4"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M15.75 19.5L8.25 12l7.5-7.5"
+                  />
+                </svg>
+                Torna ai tuoi libri
+              </button>
+              <button
+                className="mb-12 mt-8 btn btn-outline btn-md md:btn-md lg:btn-lg border-lightblue text-lightblue hover:bg-lightblue hover:text-slate-50 hover:border-darkblue"
+                onClick={handleClearAll}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-6 h-6 mr-2"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M12 4.5v15m7.5-7.5h-15"
+                  />
+                </svg>
+                Aggiungi
+              </button>
+            </div>
           )}
         </div>
       </form>

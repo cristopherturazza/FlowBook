@@ -36,7 +36,7 @@ const Book: React.FC = () => {
           <h1 className="text-5xl xl:text-7xl max-w-[20ch] text-center font-black mt-12 text-darkblue tracking-tighter">
             {data.title}
           </h1>
-          <div className="flex flex-col xl:flex-row justify-between">
+          <div className="flex flex-col items-center xl:flex-row justify-between">
             <Image
               src={
                 data.cover && data.cover != "" ? data.cover : bookPlaceholder
@@ -81,7 +81,7 @@ const Book: React.FC = () => {
             </div>
           </div>
           <div className="flex">
-            <div className="my-16 btn btn-sm sm:btn-sm md:btn-md lg:btn-lg bg-darkblue hover:bg-lightblue text-slate-50">
+            <div className="my-16 btn btn-md md:btn-md lg:btn-lg bg-darkblue hover:bg-lightblue text-slate-50">
               Richiedi scambio
             </div>
           </div>

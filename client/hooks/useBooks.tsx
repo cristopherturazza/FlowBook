@@ -104,6 +104,7 @@ export const useBooks = () => {
     isChanged,
     isError,
     isDone,
+    setIsDone,
     error,
   };
 };

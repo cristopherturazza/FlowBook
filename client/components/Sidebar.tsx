@@ -9,7 +9,7 @@ interface IMenu {
 const Sidebar: React.FC<IMenu> = ({ menuToggle, setMenuToggle }) => {
   const { logout } = useLogout();
   return (
-    <ul className="mt-4 font-semibold text-lg z-50">
+    <ul className="mt-4 font-semibold text-lg">
       <Link href="/user/dashboard" onClick={() => setMenuToggle(!menuToggle)}>
         <li className="flex py-3 pl-3 pr-12 items-center rounded-lg cursor-pointer btn-ghost active:bg-lightblue transition-all duration-100 ease-in-out select-none">
           <svg

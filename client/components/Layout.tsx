@@ -8,7 +8,7 @@ import NotLoggedIn from "./NotLoggedIn";
 
 const Layout: React.FC<PropsWithChildren> = ({ children }) => {
   const [menuToggle, setMenuToggle] = useState(false);
-  const { userData, dispatch } = useAuthContext();
+  const { userData } = useAuthContext();
   const router = useRouter();
 
   return (
@@ -30,7 +30,7 @@ const Layout: React.FC<PropsWithChildren> = ({ children }) => {
         <div
           className={`sidebar ${
             !menuToggle ? "translate-x-full" : "translate-x-0"
-          } bg-darkred bg-gradient-to-br from-darkred to-[#5a0000] text-sand fixed right-0 pl-8 pr-8 pt-28 h-screen ease-in-out duration-300`}
+          } bg-darkred bg-gradient-to-br from-darkred to-[#5a0000] text-sand z-40 fixed right-0 pl-8 pr-8 pt-28 h-screen ease-in-out duration-300`}
         >
           <Sidebar menuToggle={menuToggle} setMenuToggle={setMenuToggle} />
         </div>

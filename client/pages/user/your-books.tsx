@@ -43,16 +43,16 @@ const UserBooks: React.FC = () => {
       ) : null}
       {userBooks.length === 0 && !isLoading ? (
         <>
-          <p className="text-center mt-12 text-2xl font-semibold font-serif">
+          <p className="text-center mt-12 text-xl xl:text-2xl font-semibold font-serif">
             Attualmente il tuo scaffale è vuoto.
           </p>
-          <p className="text-center text-lg font-light mt-2">
+          <p className="text-center text-base xl:text-lg font-light mt-2">
             Aggiungi i libri che sei disposto a scambiare.
           </p>
         </>
       ) : null}
       <button
-        className="my-16 btn btn-sm sm:btn-sm md:btn-md lg:btn-lg bg-darkblue hover:bg-lightblue text-slate-50"
+        className="my-16 btn btn-md md:btn-md lg:btn-lg bg-darkblue hover:bg-lightblue text-slate-50"
         onClick={() => router.push("/user/add-books")}
       >
         Aggiungi un libro
