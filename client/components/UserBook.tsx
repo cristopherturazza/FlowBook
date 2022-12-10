@@ -8,7 +8,7 @@ const UserBook: React.FC<userBook> = (props) => {
   const router = useRouter();
   return (
     <div className="flex flex-col relative w-48  mb-16 xl:mb-0">
-      <div className="flex flex-col items-center custom-card-fade transition-opacity duration-300">
+      <div className="flex flex-col relative items-center custom-card-fade transition-opacity duration-300">
         <Image
           src={props.cover && props.cover != "" ? props.cover : bookPlaceholder}
           alt={props.title}
@@ -16,6 +16,11 @@ const UserBook: React.FC<userBook> = (props) => {
           height={250}
           className="rounded-md shadow-md max-h-[250px]"
         ></Image>
+        {!props.cover ? (
+          <h3 className="font-bold absolute overflow-hidden text-center max-w-[150px] bottom-5 ">
+            {props.title}
+          </h3>
+        ) : null}
       </div>
       <div className="flex flex-col items-center justify-center z-10 transition-opacity duration-300 overflow-hidden w-full h-full">
         <div className="flex gap-6 mt-8">
