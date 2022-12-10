@@ -28,7 +28,7 @@ const UserBooks: React.FC = () => {
         I tuoi libri{" "}
       </h3>
       {isLoading ? <Loading /> : null}
-      {userBooks.length > 0 && !isLoading ? (
+      {userBooks && userBooks.length > 0 && !isLoading ? (
         <div className="xl:grid xl:grid-cols-3 place-items-center xl:gap-16 mt-20">
           {userBooks.map((book) => (
             <UserBook
@@ -41,7 +41,7 @@ const UserBooks: React.FC = () => {
           ))}
         </div>
       ) : null}
-      {userBooks.length === 0 && !isLoading ? (
+      {userBooks && userBooks.length === 0 && !isLoading ? (
         <>
           <p className="text-center mt-12 text-xl xl:text-2xl font-semibold font-serif">
             Attualmente il tuo scaffale è vuoto.

@@ -13,9 +13,11 @@ const loginUser = async (req, res) => {
 
     const id = user._id;
 
+    const location = user.location;
+
     const token = createToken(id);
 
-    res.status(200).json({ email, token, id });
+    res.status(200).json({ email, token, id, location });
   } catch (err) {
     res.status(400).json({ error: err.message });
     console.log(err.message);
@@ -23,7 +25,8 @@ const loginUser = async (req, res) => {
 };
 
 const signupUser = async (req, res) => {
-  const { email, password, fullname, gender, birthdate, city } = req.body;
+  const { email, password, fullname, gender, birthdate, city, location } =
+    req.body;
 
   try {
     const user = await User.signup(
@@ -32,7 +35,8 @@ const signupUser = async (req, res) => {
       fullname,
       gender,
       birthdate,
-      city
+      city,
+      location
     );
     res.status(201).json(user);
   } catch (err) {
@@ -55,9 +59,16 @@ const getUserData = async (req, res) => {
 
 const updateUserData = async (req, res) => {
   const id = req.params.id;
-  const { fullname, gender, birthdate, city } = req.body;
+  const { fullname, gender, birthdate, city, location } = req.body;
   try {
-    const user = await User.updateUser(id, fullname, gender, birthdate, city);
+    const user = await User.updateUser(
+      id,
+      fullname,
+      gender,
+      birthdate,
+      city,
+      location
+    );
     res.status(200).json(user);
   } catch (err) {
     res.status(400).json({ error: err.message });

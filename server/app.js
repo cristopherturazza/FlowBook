@@ -18,8 +18,8 @@ app.use(morgan("dev"));
 
 // body parser and query parameters
 app.use(cors());
-app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 // security middlewares
 app.use(helmet());

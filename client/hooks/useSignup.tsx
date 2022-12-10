@@ -23,7 +23,13 @@ export const useSignup = () => {
     setIsLoading(true);
     setIsError(false);
 
-    const city = selectedCity;
+    const city = {
+      place_id: selectedCity?.place_id,
+      city: selectedCity?.city,
+      county_code: selectedCity?.county_code,
+    };
+
+    const location = [selectedCity?.lon, selectedCity?.lat];
 
     try {
       const response = await axios.post(

@@ -9,7 +9,12 @@ interface userProfile {
   fullname?: String;
   birthdate?: String;
   gender?: String;
-  city?: HintCity;
+  city?: {
+    place_id: String;
+    city: String;
+    county_code: String;
+  };
+  location?: [Number, Number];
 }
 
 export const useUpdate = () => {

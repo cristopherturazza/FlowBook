@@ -26,7 +26,12 @@ const UserProfile: React.FC = () => {
       fullname: fullname,
       birthdate: birthdate,
       gender: gender,
-      city: selectedCity,
+      city: {
+        place_id: selectedCity?.place_id,
+        city: selectedCity?.city,
+        county_code: selectedCity?.county_code,
+      },
+      location: [selectedCity?.lon, selectedCity?.lat],
     };
 
     if (userData) {

@@ -13,7 +13,7 @@ const {
 
 // Free routes
 
-router.get("/", getBooks);
+router.get("/search", getBooks);
 router.get("/:id", getSingleBook);
 
 // Protected Routes

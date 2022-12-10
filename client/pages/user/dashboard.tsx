@@ -5,7 +5,7 @@ import SearchBar from "../../components/SearchBar";
 const Dashboard: React.FC = () => {
   const fetchBooks = async ({ pageParam = 0 }) => {
     const fetch = await axios.get(
-      `${process.env.NEXT_PUBLIC_API_PATH}/api/books/`
+      `${process.env.NEXT_PUBLIC_API_PATH}/api/books/search`
     );
     return fetch.data;
   };

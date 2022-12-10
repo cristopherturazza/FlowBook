@@ -4,6 +4,20 @@ const validator = require("validator");
 
 const Schema = mongoose.Schema;
 
+// schema for GeoJSON search
+
+const pointSchema = new mongoose.Schema({
+  type: {
+    type: String,
+    enum: ["Point"],
+    required: true,
+  },
+  coordinates: {
+    type: [Number],
+    required: true,
+  },
+});
+
 const userSchema = new Schema({
   email: {
     type: String,
@@ -28,8 +42,10 @@ const userSchema = new Schema({
     place_id: { type: String, required: true },
     city: { type: String, required: true },
     county_code: { type: String, required: true },
-    lon: { type: Number, required: true },
-    lat: { type: Number, required: true },
+  },
+  location: {
+    type: pointSchema,
+    required: true,
   },
 });
 
@@ -41,7 +57,8 @@ userSchema.statics.signup = async function (
   fullname,
   gender,
   birthdate,
-  city
+  city,
+  location
 ) {
   const reqUser = await this.findOne({ email });
 
@@ -49,7 +66,7 @@ userSchema.statics.signup = async function (
     throw Error("Si prega di riempire tutti i campi obbligatori");
   }
 
-  if (!city) {
+  if (!city && location) {
     throw Error(
       "Selezionare una città tra quelle suggerite nel menu a tendina"
     );
@@ -78,6 +95,7 @@ userSchema.statics.signup = async function (
     gender,
     birthdate,
     city,
+    location: { type: "Point", coordinates: location },
   });
 
   return user;
@@ -88,7 +106,8 @@ userSchema.statics.updateUser = async function (
   fullname,
   gender,
   birthdate,
-  city
+  city,
+  location
 ) {
   const user = await this.updateOne(
     { _id: id },
@@ -97,6 +116,7 @@ userSchema.statics.updateUser = async function (
       gender,
       birthdate,
       city,
+      location: { type: "Point", coordinates: location },
     }
   );
 

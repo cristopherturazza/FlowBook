@@ -14,14 +14,11 @@ const UserBook: React.FC<userBook> = (props) => {
           alt={props.title}
           width={250}
           height={250}
-          className="rounded-md shadow-md"
+          className="rounded-md shadow-md max-h-[250px]"
         ></Image>
       </div>
       <div className="flex flex-col items-center justify-center z-10 transition-opacity duration-300 overflow-hidden w-full h-full">
-        <h3 className="my-4 mx-2 font-bold text-xl leading-tight drop-shadow-xl text-center">
-          {props.title}
-        </h3>
-        <div className="flex gap-6">
+        <div className="flex gap-6 mt-8">
           <div
             className="bg-darkblue p-2 rounded-md text-white cursor-pointer btn hover:bg-lightblue"
             onClick={() => router.push(`/books/${props.id}`)}
