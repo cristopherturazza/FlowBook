@@ -29,7 +29,7 @@ const UserBooks: React.FC = () => {
       </h3>
       {isLoading ? <Loading /> : null}
       {userBooks && userBooks.length > 0 && !isLoading ? (
-        <div className="xl:grid xl:grid-cols-3 place-items-center xl:gap-16 mt-20">
+        <div className="xl:grid xl:grid-cols-4 xl:gap-8 mt-12">
           {userBooks.map((book) => (
             <UserBook
               title={book.title}

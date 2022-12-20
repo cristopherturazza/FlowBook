@@ -7,25 +7,24 @@ import type { userBook } from "../types/userBook";
 const UserBook: React.FC<userBook> = (props) => {
   const router = useRouter();
   return (
-    <div className="flex flex-col relative w-48  mb-16 xl:mb-0">
+    <div className="flex flex-col relative w-48 m-8  mb-16 xl:mb-0">
       <div className="flex flex-col relative items-center custom-card-fade transition-opacity duration-300">
         <Image
           src={props.cover && props.cover != "" ? props.cover : bookPlaceholder}
           alt={props.title}
           width={250}
           height={250}
-          className="rounded-md shadow-md max-h-[250px]"
+          className="rounded-md shadow-md h-[250px]"
         ></Image>
         {!props.cover ? (
-          <h3 className="font-bold absolute overflow-hidden text-center max-w-[150px] bottom-5 ">
+          <h3 className="font-semibold absolute overflow-hidden text-center max-w-[150px] bottom-5 ">
             {props.title}
           </h3>
         ) : null}
-      </div>
-      <div className="flex flex-col items-center justify-center z-10 transition-opacity duration-300 overflow-hidden w-full h-full">
-        <div className="flex gap-6 mt-8">
+
+        <div className="flex justify-center absolute -bottom-6 gap-6 mt-8">
           <div
-            className="bg-darkblue p-2 rounded-md text-white cursor-pointer btn hover:bg-lightblue"
+            className="bg-darkblue p-4 rounded-full text-white cursor-pointer btn shadow-md hover:bg-lightblue border-none"
             onClick={() => router.push(`/books/${props.id}`)}
           >
             <svg
@@ -34,7 +33,7 @@ const UserBook: React.FC<userBook> = (props) => {
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-5 h-5"
+              className="w-4 h-4"
             >
               <path
                 strokeLinecap="round"
@@ -49,7 +48,7 @@ const UserBook: React.FC<userBook> = (props) => {
             </svg>
           </div>
           <div
-            className="bg-scarletred p-2 rounded-md text-white cursor-pointer btn hover:bg-darkred"
+            className="bg-scarletred p-4 rounded-full text-white cursor-pointer shadow-md btn hover:bg-darkred border-none"
             onClick={() => props.removeBook(props.id)}
           >
             <svg
@@ -58,7 +57,7 @@ const UserBook: React.FC<userBook> = (props) => {
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-5 h-5"
+              className="w-4 h-4"
             >
               <path
                 strokeLinecap="round"

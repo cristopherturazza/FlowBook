@@ -33,7 +33,7 @@ const Book: React.FC = () => {
         <BookNotFound />
       ) : data ? (
         <>
-          <h1 className="text-5xl xl:text-7xl max-w-[20ch] text-center font-black mt-12 text-darkblue tracking-tighter">
+          <h1 className="text-4xl xl:text-6xl max-w-[20ch] text-center font-black mt-12 text-darkblue tracking-tighter">
             {data.title}
           </h1>
           <div className="flex flex-col items-center xl:flex-row justify-between">

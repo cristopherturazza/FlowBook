@@ -61,12 +61,13 @@ const getUserBooks = async (req, res) => {
 const getBooks = async (req, res) => {
   //default value if not provided
 
-  const pageSize = req.query.pageSize ? parseInt(req.query.pageSize) : 6;
-  const page = req.query.page ? parseInt(req.query.page) : 0;
+  const pageSkip = req.query.pageSkip ? parseInt(req.query.pageSkip) : 0;
+  const pageSize = req.query.pageSize ? parseInt(req.query.pageSize) : 12;
   const radius = req.query.radius ? parseFloat(req.query.radius) : 0;
   const lon = req.query.lon ? parseFloat(req.query.lon) : 0;
   const lat = req.query.lat ? parseFloat(req.query.lat) : 0;
   const category = req.query.category;
+  const status = req.query.status;
 
   // regexp for substring search
 
@@ -75,6 +76,7 @@ const getBooks = async (req, res) => {
   let query = {
     category: category ? category : /.*/,
     title: substring,
+    status: status ? status : /.*/,
   };
 
   // check if there is geo search request
@@ -101,9 +103,15 @@ const getBooks = async (req, res) => {
         "owner.gender": 0,
         "owner.birthdate": 0,
       })
-      .skip(pageSize * page)
+      .skip(pageSkip)
       .limit(pageSize);
-    res.status(200).json(books);
+
+    const totalBooks = await Book.countDocuments().exec();
+    const response = {
+      books: books,
+      totalBooks: totalBooks,
+    };
+    res.status(200).json(response);
   } catch (err) {
     res.status(400).json({ error: err.message });
     console.log(err.message);
