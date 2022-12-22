@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Popover, Transition, Listbox, RadioGroup } from "@headlessui/react";
+import { Popover, Transition, Listbox } from "@headlessui/react";
 import { Fragment } from "react";
 
 interface SearchBarProps {
@@ -9,7 +9,7 @@ interface SearchBarProps {
 const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("Tutte");
-  const [status, setStatus] = useState("all");
+  const [status, setStatus] = useState("");
   const [distance, setDistance] = useState(1200);
 
   const categories = [

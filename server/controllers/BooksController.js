@@ -76,7 +76,12 @@ const getBooks = async (req, res) => {
   let query = {
     category: category ? category : /.*/,
     title: substring,
-    status: status ? status : /.*/,
+    status:
+      status === "perfect"
+        ? "Come Nuovo"
+        : status === "good"
+        ? { $in: ["Come Nuovo", "Leggeri Segni di Usura"] }
+        : /.*/,
   };
 
   // check if there is geo search request
@@ -105,6 +110,8 @@ const getBooks = async (req, res) => {
       })
       .skip(pageSkip)
       .limit(pageSize);
+
+    console.log(books.length);
 
     const totalBooks = await Book.countDocuments().exec();
     const response = {

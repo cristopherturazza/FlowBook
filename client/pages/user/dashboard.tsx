@@ -1,16 +1,18 @@
-import axios from "axios";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useState, useMemo } from "react";
+import { useAuthContext } from "../../hooks/useAuthContext";
 import InfiniteScroll from "react-infinite-scroller";
 import SearchBar from "../../components/SearchBar";
 import CardBook from "../../components/CardBook";
 import Loading from "../../components/Loading";
+import axios from "axios";
 
 const Dashboard: React.FC = () => {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("");
   const [status, setStatus] = useState("");
   const [distance, setDistance] = useState(1200);
+  const { userData } = useAuthContext();
 
   const pageSize = 12;
 
@@ -30,7 +32,7 @@ const Dashboard: React.FC = () => {
     const pageSkip = pageParam * pageSize;
 
     const fetch = await axios.get(
-      `${process.env.NEXT_PUBLIC_API_PATH}/api/books/search?q=${query}&category=${category}&pageSkip=${pageSkip}&pageSize=${pageSize}`
+      `${process.env.NEXT_PUBLIC_API_PATH}/api/books/search?q=${query}&category=${category}&status=${status}&radius=${distance}&lon=${userData?.location?.coordinates[0]}&lat=${userData?.location?.coordinates[1]}&pageSkip=${pageSkip}&pageSize=${pageSize}`
     );
     const result = fetch.data;
 
@@ -45,7 +47,7 @@ const Dashboard: React.FC = () => {
     isFetching,
     isFetchingNextPage,
   } = useInfiniteQuery({
-    queryKey: ["book", query, category],
+    queryKey: ["book", query, category, distance, status],
     queryFn: fetchBooks,
     getNextPageParam: (lastPage, pages) => {
       if (lastPage.nextPage < lastPage.result.totalBooks / pageSize)
