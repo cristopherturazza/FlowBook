@@ -111,8 +111,6 @@ const getBooks = async (req, res) => {
       .skip(pageSkip)
       .limit(pageSize);
 
-    console.log(books.length);
-
     const totalBooks = await Book.countDocuments().exec();
     const response = {
       books: books,

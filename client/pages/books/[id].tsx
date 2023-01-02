@@ -5,9 +5,11 @@ import BookNotFound from "../../components/BookNotFound";
 import Loading from "../../components/Loading";
 import Image from "next/image";
 import bookPlaceholder from "../../public/book-placeholder.png";
+import { useAuthContext } from "../../hooks/useAuthContext";
 
 const Book: React.FC = () => {
   const router = useRouter();
+  const { userData } = useAuthContext();
 
   const fetchBook = async (id: string | undefined | string[]) => {
     const fetch = await axios.get(
@@ -22,8 +24,6 @@ const Book: React.FC = () => {
     queryKey: ["book", bookID],
     queryFn: () => fetchBook(bookID),
   });
-
-  console.log(data);
 
   return (
     <div className="flex flex-col items-center">
@@ -69,7 +69,7 @@ const Book: React.FC = () => {
               </p>
               <p className="text-lg xl:text-xl my-2 font-serif">
                 <strong>Proprietario: </strong>
-                {data.owner.fullname}
+                {userData?.id != data.owner._id ? data.owner.fullname : "Tu"}
               </p>
               <p className="text-lg xl:text-xl my-2 font-serif">
                 <strong>Dove si trova: </strong>
@@ -81,9 +81,15 @@ const Book: React.FC = () => {
             </div>
           </div>
           <div className="flex">
-            <div className="my-16 btn btn-md md:btn-md lg:btn-lg bg-darkblue hover:bg-lightblue text-slate-50">
-              Richiedi scambio
-            </div>
+            {userData?.id != data.owner._id ? (
+              <div className="my-16 btn btn-md md:btn-md lg:btn-lg bg-darkblue hover:bg-lightblue text-slate-50">
+                Richiedi scambio
+              </div>
+            ) : (
+              <div className="my-16 btn btn-md md:btn-md lg:btn-lg bg-slate-300 pointer-events-none hover:bg-lightblue text-darkblue">
+                Il libro è tuo
+              </div>
+            )}
           </div>
         </>
       ) : null}

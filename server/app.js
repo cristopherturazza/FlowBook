@@ -8,6 +8,7 @@ const cors = require("cors");
 
 const usersRoute = require("./routes/Users");
 const booksRoute = require("./routes/Books");
+const exchangesRoute = require("./routes/Exchanges");
 
 const app = express();
 
@@ -31,6 +32,7 @@ mongoose.set("sanitizeFilter", true);
 
 app.use("/api/users", usersRoute);
 app.use("/api/books", booksRoute);
+app.use("/api/exchanges", exchangesRoute);
 
 // error 404
 app.get("*", (req, res) => {

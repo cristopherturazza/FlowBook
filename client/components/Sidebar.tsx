@@ -49,7 +49,7 @@ const Sidebar: React.FC<IMenu> = ({ menuToggle, setMenuToggle }) => {
         </li>
       </Link>
       <Link
-        href="/user/your-exchange"
+        href="/user/your-exchanges"
         onClick={() => setMenuToggle(!menuToggle)}
       >
         <li className="flex py-3 pl-3 pr-12 rounded-lg items-center cursor-pointer btn-ghost active:bg-lightblue transition-all duration-100 ease-in-out select-none">

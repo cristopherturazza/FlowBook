@@ -1,0 +1,18 @@
+const express = require("express");
+
+const router = express.Router();
+const authChecker = require("../middleware/authChecker");
+const {
+  newExchange,
+  getUserExchanges,
+} = require("../controllers/ExchangesController");
+
+router.use(authChecker);
+
+// create a new exchange
+router.post("/new", newExchange);
+
+// get all the exchange of the current user
+router.get("/:id", getUserExchanges);
+
+module.exports = router;
