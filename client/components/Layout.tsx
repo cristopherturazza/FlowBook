@@ -13,16 +13,16 @@ const Layout: React.FC<PropsWithChildren> = ({ children }) => {
 
   return (
     <div className="relative min-h-screen bg-sand text-slate-700 overflow-hidden">
-      <div className="flex flex-col pb-24">
+      <div className="flex flex-col relative pb-24">
         <Navbar menuToggle={menuToggle} setMenuToggle={setMenuToggle} />
 
         {userData?.isLoggedIn ||
         router.asPath === "/login" ||
         router.asPath === "/signup" ||
         router.asPath === "/" ? (
-          <div className="flex justify-center">{children}</div>
+          <div className="flex justify-center mt-24">{children}</div>
         ) : (
-          <div className="flex flex-col items-center ">
+          <div className="flex flex-col items-center mt-24">
             <NotLoggedIn />
           </div>
         )}
