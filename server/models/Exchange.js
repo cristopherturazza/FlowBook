@@ -7,14 +7,17 @@ const exchangeSchema = new Schema(
     sender: {
       type: Schema.Types.ObjectId,
       required: true,
+      ref: "User",
     },
     receiver: {
       type: Schema.Types.ObjectId,
       required: true,
+      ref: "User",
     },
     book: {
       type: Schema.Types.ObjectId,
       required: true,
+      ref: "Book",
     },
     status: {
       type: String,

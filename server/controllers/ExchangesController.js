@@ -24,8 +24,16 @@ const getUserExchanges = async (req, res) => {
   const { id } = req.params;
 
   try {
-    const userSentExchanges = await Exchange.find({ sender: id });
-    const userReceivedExchanges = await Exchange.find({ receiver: id });
+    const userSentExchanges = await Exchange.find({ sender: id })
+      .populate({ path: "sender", select: { fullname: 1 } })
+      .populate({ path: "receiver", select: { fullname: 1 } })
+      .populate({ path: "book", select: { isbn: 1, title: 1, cover: 1 } })
+      .sort("-createdAt");
+    const userReceivedExchanges = await Exchange.find({ receiver: id })
+      .populate({ path: "sender", select: { fullname: 1 } })
+      .populate({ path: "receiver", select: { fullname: 1 } })
+      .populate({ path: "book", select: { isbn: 1, title: 1, cover: 1 } })
+      .sort("-createdAt");
     const reply = {
       sent: userSentExchanges,
       received: userReceivedExchanges,
