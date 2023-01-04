@@ -45,4 +45,23 @@ const getUserExchanges = async (req, res) => {
   }
 };
 
-module.exports = { newExchange, getUserExchanges };
+const updateExchange = async (req, res) => {
+  const { exId } = req.params;
+  const newStatus = req.body.status;
+
+  try {
+    if (!newStatus) throw Error("Devi fornire un nuovo valore di stato");
+    const update = await Exchange.updateOne(
+      { _id: exId },
+      {
+        status: newStatus,
+      }
+    );
+    res.status(200).json(update);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+    console.log(err.message);
+  }
+};
+
+module.exports = { newExchange, getUserExchanges, updateExchange };
