@@ -4,12 +4,17 @@ import { useAuthContext } from "../hooks/useAuthContext";
 interface IMenu {
   menuToggle: boolean;
   setMenuToggle: (id: boolean) => void;
+  userAlert: boolean;
+  resetAlert: () => void;
 }
 
-const Navbar: React.FC<IMenu> = ({ menuToggle, setMenuToggle }) => {
+const Navbar: React.FC<IMenu> = ({
+  menuToggle,
+  setMenuToggle,
+  userAlert,
+  resetAlert,
+}) => {
   const { userData } = useAuthContext();
-
-  //TO-DO: Notifiche?
 
   return (
     <div className="navbar fixed top-0 z-50 h-24 bg-darkred shadow-xl text-slate-50">
@@ -63,6 +68,29 @@ const Navbar: React.FC<IMenu> = ({ menuToggle, setMenuToggle }) => {
         ) : null}
         {userData?.isLoggedIn ? (
           <ul className="flex text-lg font-semibold">
+            <Link
+              href="/user/your-exchanges"
+              className="relative btn btn-square btn-ghost mr-2"
+              onClick={resetAlert}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-8 h-8"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"
+                />
+              </svg>
+              {userAlert ? (
+                <div className="absolute rounded-full bg-lightblue animate-ping w-[10px] h-[10px] top-0 right-2"></div>
+              ) : null}
+            </Link>
             <label
               className="btn btn-square btn-ghost"
               onClick={() => setMenuToggle(!menuToggle)}

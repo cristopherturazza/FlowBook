@@ -65,8 +65,6 @@ const Exchanges: React.FC = () => {
     );
   }, [data]);
 
-  console.log(data);
-
   const memoSent = useMemo(() => {
     return (
       <div className="bg-slate-50 border border-slate-200 shadow-sm p-4 rounded-xl mt-8">

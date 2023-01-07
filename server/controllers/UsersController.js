@@ -1,3 +1,4 @@
+const { stat } = require("fs");
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 
@@ -88,10 +89,35 @@ const updateUserPassword = async (req, res) => {
   }
 };
 
+const getUserAlert = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const status = await User.findOne({ _id: id }).select("hasAlert").lean();
+    res.status(200).json(status.hasAlert);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+    console.log(err.message);
+  }
+};
+const resetUserAlert = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const reset = await User.updateOne({ _id: id }, { hasAlert: false });
+    res.status(200).json(reset);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+    console.log(err.message);
+  }
+};
+
 module.exports = {
   signupUser,
   loginUser,
   getUserData,
   updateUserData,
   updateUserPassword,
+  getUserAlert,
+  resetUserAlert,
 };

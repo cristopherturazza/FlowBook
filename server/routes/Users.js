@@ -9,6 +9,8 @@ const {
   getUserData,
   updateUserData,
   updateUserPassword,
+  getUserAlert,
+  resetUserAlert,
 } = require("../controllers/UsersController");
 
 // Signup/Login Route
@@ -26,5 +28,11 @@ router.get("/:id", getUserData);
 router.patch("/:id", updateUserData);
 
 router.patch("/:id/password", updateUserPassword);
+
+// Alerts
+
+router.get("/alert/:id", getUserAlert);
+
+router.patch("/alert/reset/:id", resetUserAlert);
 
 module.exports = router;

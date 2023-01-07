@@ -4,9 +4,16 @@ import { useLogout } from "../hooks/useLogout";
 interface IMenu {
   menuToggle: boolean;
   setMenuToggle: (id: boolean) => void;
+  userAlert: boolean;
+  resetAlert: () => void;
 }
 
-const Sidebar: React.FC<IMenu> = ({ menuToggle, setMenuToggle }) => {
+const Sidebar: React.FC<IMenu> = ({
+  menuToggle,
+  setMenuToggle,
+  userAlert,
+  resetAlert,
+}) => {
   const { logout } = useLogout();
   return (
     <ul className="mt-4 font-semibold text-lg">
@@ -50,9 +57,15 @@ const Sidebar: React.FC<IMenu> = ({ menuToggle, setMenuToggle }) => {
       </Link>
       <Link
         href="/user/your-exchanges"
-        onClick={() => setMenuToggle(!menuToggle)}
+        onClick={() => {
+          resetAlert();
+          setMenuToggle(!menuToggle);
+        }}
       >
-        <li className="flex py-3 pl-3 pr-12 rounded-lg items-center cursor-pointer btn-ghost active:bg-lightblue transition-all duration-100 ease-in-out select-none">
+        <li className="relative flex py-3 pl-3 pr-12 rounded-lg items-center cursor-pointer btn-ghost active:bg-lightblue transition-all duration-100 ease-in-out select-none">
+          {userAlert ? (
+            <div className="absolute rounded-full bg-lightblue animate-ping w-[10px] h-[10px] top-5 -left-2"></div>
+          ) : null}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
