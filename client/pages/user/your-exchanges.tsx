@@ -1,5 +1,5 @@
 import { Tab } from "@headlessui/react";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import ExchangeReqReceived from "../../components/ExchangeReqReceived";
 import ExchangeReqSent from "../../components/ExchangeReqSent";
 import type { Exchange } from "../../types/Exchange";
@@ -10,6 +10,11 @@ import { useQuery } from "@tanstack/react-query";
 const Exchanges: React.FC = () => {
   const [tabIndex, setTabIndex] = useState(0);
   const { userData } = useAuthContext();
+  const [trigger, setTrigger] = useState(false);
+
+  const refetcher = () => {
+    setTrigger(!trigger);
+  };
 
   const fetchExchanges = async () => {
     const response = await axios.get(
@@ -26,11 +31,70 @@ const Exchanges: React.FC = () => {
   };
 
   const { data, isLoading, isError } = useQuery({
-    queryKey: ["exchange"],
+    queryKey: ["exchange", trigger],
     queryFn: () => fetchExchanges(),
+    keepPreviousData: true,
   });
 
+  const memoReceived = useMemo(() => {
+    return (
+      <div className="bg-slate-50 border border-slate-200 shadow-sm p-4 rounded-xl mt-8">
+        <h3 className="font-bold text-xl text-darkblue">Richieste Ricevute</h3>
+        <div className="divider"></div>
+        {isLoading ? (
+          <div className="text-center xl:min-w-[896px] animate-pulse"></div>
+        ) : isError || !data.received.length ? (
+          <div className="text-center xl:min-w-[896px]">
+            Nessuna richiesta ricevuta al momento.
+          </div>
+        ) : (
+          data.received.map((req: Exchange) => (
+            <ExchangeReqReceived
+              key={req._id}
+              id={req._id}
+              cover={req.book.cover}
+              title={req.book.title}
+              date={req.createdAt}
+              user={req.sender.fullname}
+              status={req.status}
+              trigger={refetcher}
+            />
+          ))
+        )}
+      </div>
+    );
+  }, [data]);
+
   console.log(data);
+
+  const memoSent = useMemo(() => {
+    return (
+      <div className="bg-slate-50 border border-slate-200 shadow-sm p-4 rounded-xl mt-8">
+        <h3 className="font-bold text-xl text-darkblue">Richieste Inviate</h3>
+        <div className="divider"></div>
+        {isLoading ? (
+          <div className="text-center xl:min-w-[896px] animate-pulse"></div>
+        ) : isError || !data.received.length ? (
+          <div className="text-center xl:min-w-[896px]">
+            Nessuna richiesta inviata al momento.
+          </div>
+        ) : (
+          data.sent.map((req: Exchange) => (
+            <ExchangeReqSent
+              key={req._id}
+              cover={req.book.cover}
+              title={req.book.title}
+              date={req.createdAt}
+              user={req.receiver.fullname}
+              status={req.status}
+              replyMessage={req.replyMessage}
+              userEmail={req.receiver.email}
+            />
+          ))
+        )}
+      </div>
+    );
+  }, [data]);
 
   return (
     <div className="flex flex-col items-center ">
@@ -65,44 +129,8 @@ const Exchanges: React.FC = () => {
             </Tab>
           </Tab.List>
           <Tab.Panels>
-            <Tab.Panel>
-              <div className="bg-slate-50 border border-slate-200 shadow-sm p-4 rounded-xl mt-8">
-                <h3 className="font-bold text-xl text-darkblue">
-                  Richieste Ricevute
-                </h3>
-                <div className="divider"></div>
-                {isLoading ? (
-                  <div className="text-center min-w-[896px] animate-pulse"></div>
-                ) : isError || !data.received.length ? (
-                  <div className="text-center min-w-[896px]">
-                    Nessuna richiesta ricevuta al momento.
-                  </div>
-                ) : (
-                  data.received.map((req: Exchange) => (
-                    <ExchangeReqReceived
-                      key={req._id}
-                      cover={req.book.cover}
-                      title={req.book.title}
-                      date={req.createdAt}
-                      isbn={req.book.isbn}
-                      user={req.sender.fullname}
-                      status={req.status}
-                    />
-                  ))
-                )}
-              </div>
-            </Tab.Panel>
-            <Tab.Panel>
-              <div className="bg-slate-50 border border-slate-200 shadow-sm p-4 rounded-xl mt-8">
-                <h3 className="font-bold text-xl text-darkblue">
-                  Richieste Inviate
-                </h3>
-                <div className="divider"></div>
-                <div className="text-center min-w-[896px]">
-                  Nessuna richiesta ricevuta al momento.
-                </div>
-              </div>
-            </Tab.Panel>
+            <Tab.Panel>{memoReceived}</Tab.Panel>
+            <Tab.Panel>{memoSent}</Tab.Panel>
           </Tab.Panels>
         </Tab.Group>
       </div>

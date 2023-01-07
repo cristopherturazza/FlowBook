@@ -3,20 +3,25 @@ import Image from "next/image";
 import { Dialog } from "@headlessui/react";
 import { useState } from "react";
 import LinesEllipsis from "react-lines-ellipsis";
+import { useExchange } from "../hooks/useExchange";
 
 interface ExchangeProps {
   key: string;
+  id: string;
   cover?: string;
   title: string;
   date: string;
-  isbn: string;
   user: string;
   status: string;
+  trigger: () => void;
 }
 
 const ExchangeReqReceived: React.FC<ExchangeProps> = (props) => {
   const [dialogStatus, setDialogStatus] = useState(false);
   const [allowStatus, setAllowStatus] = useState(false);
+  const [replyMessage, setReplyMessage] = useState("");
+
+  const { updateExchange, isWorking, isDone, isExError } = useExchange();
 
   //convert isodate to local dd/mm/yyyy date
   const localDate = (isodate: string) =>
@@ -25,6 +30,18 @@ const ExchangeReqReceived: React.FC<ExchangeProps> = (props) => {
       day: "2-digit",
       year: "numeric",
     });
+
+  const handleRejected = () => {
+    updateExchange(props.id, "rejected");
+    props.trigger();
+  };
+
+  const handleAccepted = () => {
+    updateExchange(props.id, "accepted", replyMessage);
+    setAllowStatus(false);
+    setDialogStatus(false);
+    props.trigger();
+  };
 
   return (
     <div className="flex flex-col xl:grid xl:grid-cols-12 mb-4">
@@ -90,7 +107,10 @@ const ExchangeReqReceived: React.FC<ExchangeProps> = (props) => {
                 />
               </svg>
             </button>
-            <button className="btn-sm btn rounded-lg px-2 text-slate-50 bg-darkred hover:bg-scarletred">
+            <button
+              onClick={handleRejected}
+              className="btn-sm btn rounded-lg px-2 text-slate-50 bg-darkred hover:bg-scarletred"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -145,6 +165,8 @@ const ExchangeReqReceived: React.FC<ExchangeProps> = (props) => {
                 <textarea
                   className="textarea textarea-bordered focus:outline-lightblue bg-slate-50 mt-2 w-full"
                   placeholder="Es.: libro in cambio desiderato, necessità relative allo scambio, ecc..."
+                  value={replyMessage}
+                  onChange={(e) => setReplyMessage(e.target.value)}
                 ></textarea>
               </div>
             ) : null}
@@ -152,6 +174,7 @@ const ExchangeReqReceived: React.FC<ExchangeProps> = (props) => {
               <button
                 disabled={!allowStatus}
                 className="btn btn-md md:btn-md lg:btn-lg bg-darkblue hover:bg-lightblue text-slate-50 disabled:text-slate-500"
+                onClick={handleAccepted}
               >
                 Accetta
               </button>

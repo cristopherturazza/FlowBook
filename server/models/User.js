@@ -47,6 +47,7 @@ const userSchema = new Schema({
     type: pointSchema,
     required: true,
   },
+  hasAlert: Boolean,
 });
 
 //static signup methods

@@ -184,7 +184,7 @@ const Signup: React.FC = () => {
               placeholder="Richiesto"
             />
             <div>
-              {hintCities.length > 2 && (
+              {hintCities.length > 1 && (
                 <ul
                   tabIndex={0}
                   className="dropdown-content menu p-2 shadow bg-slate-100 text-darkblue rounded-box w-56 "
@@ -321,7 +321,7 @@ const Signup: React.FC = () => {
                     cy="12"
                     r="10"
                     stroke="currentColor"
-                    stroke-width="4"
+                    strokeWidth="4"
                   ></circle>
                   <path
                     className="opacity-75"

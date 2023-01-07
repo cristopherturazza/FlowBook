@@ -23,7 +23,6 @@ const exchangeSchema = new Schema(
       type: String,
       required: true,
     },
-    isReplySeen: Boolean,
     replyMessage: String,
   },
   { timestamps: true }

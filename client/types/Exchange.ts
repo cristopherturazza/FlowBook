@@ -7,6 +7,7 @@ export interface Exchange {
   receiver: {
     _id: string;
     fullname: string;
+    email?: string;
   };
   book: {
     _id: string;
@@ -16,6 +17,5 @@ export interface Exchange {
   };
   createdAt: string;
   status: string;
-  isReplySeen?: boolean;
   replyMessage?: string;
 }
