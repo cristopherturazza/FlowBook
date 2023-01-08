@@ -1,12 +1,14 @@
 const Book = require("../models/Book");
 const validator = require("validator");
 
-// query word escaping function
+// Query word escaping function
 
 function escapeRegExp(string) {
   const sanitized = string ? string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") : "";
   return sanitized;
 }
+
+// Add a new book
 
 const addBook = async (req, res) => {
   const { owner, isbn, title, author, status, category, year, cover } =
@@ -34,6 +36,8 @@ const addBook = async (req, res) => {
   }
 };
 
+// Delete a book
+
 const deleteBook = async (req, res) => {
   const { id } = req.params;
 
@@ -46,6 +50,8 @@ const deleteBook = async (req, res) => {
   }
 };
 
+// Get all the user books
+
 const getUserBooks = async (req, res) => {
   const { id } = req.params;
 
@@ -57,6 +63,8 @@ const getUserBooks = async (req, res) => {
     console.log(err.message);
   }
 };
+
+// Fetch books in the database, with pagination and filters
 
 const getBooks = async (req, res) => {
   //default value if not provided
@@ -111,6 +119,8 @@ const getBooks = async (req, res) => {
       .skip(pageSkip)
       .limit(pageSize);
 
+    // Total books counter for pagination ending
+
     const totalBooks = await Book.countDocuments().exec();
     const response = {
       books: books,
@@ -122,6 +132,8 @@ const getBooks = async (req, res) => {
     console.log(err.message);
   }
 };
+
+// Fetch book details
 
 const getSingleBook = async (req, res) => {
   const { id } = req.params;

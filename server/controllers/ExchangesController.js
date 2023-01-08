@@ -1,19 +1,29 @@
 const Exchange = require("../models/Exchange");
 const User = require("../models/User");
 
+// Add a new exchange request
+
 const newExchange = async (req, res) => {
   const { sender, receiver, book } = req.body;
 
-  const alreadyReq = await Exchange.find({ sender: sender, book: book });
+  // ! check if there are some active requests
+  const alreadyReq = await Exchange.find({
+    sender: sender,
+    book: book,
+    status: "waiting",
+  });
 
   try {
-    if (alreadyReq.length) throw Error("Hai già richiesto questo libro");
+    if (alreadyReq.length)
+      throw Error("Hai già una richiesta attiva per questo libro");
     const exchange = await Exchange.create({
       sender,
       receiver,
       book,
       status: "waiting",
     });
+
+    // * Set user alert true
     const alert = await User.updateOne(
       { _id: receiver },
       { $set: { hasAlert: true } },
@@ -26,6 +36,8 @@ const newExchange = async (req, res) => {
     console.log(err.message);
   }
 };
+
+// Get all the user exchanges (sent and received)
 
 const getUserExchanges = async (req, res) => {
   const { id } = req.params;
@@ -52,9 +64,13 @@ const getUserExchanges = async (req, res) => {
   }
 };
 
+// Update exchange status
+
 const updateExchange = async (req, res) => {
   const { exId } = req.params;
   const newStatus = req.body.status;
+
+  // replyMessage is optional, if not provided has a default statement (only if accepted)
   const replyMessage =
     req.body.replyMessage ??
     (newStatus === "accepted"
@@ -71,6 +87,8 @@ const updateExchange = async (req, res) => {
         replyMessage: replyMessage,
       }
     );
+
+    // * Set user alert true
     const alert = await User.updateOne(
       { _id: ex.sender.toString() },
       { $set: { hasAlert: true } },

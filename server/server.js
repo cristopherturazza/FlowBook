@@ -2,7 +2,10 @@
 
 const server = require("./app");
 const database = require("./database");
+require("dotenv").config();
 
 database.connectDB();
 
-server.listen(3000, () => console.log("Server is listening on port 3000"));
+server.listen(process.env.PORT, () =>
+  console.log(`Server is listening on port ${process.env.PORT}`)
+);

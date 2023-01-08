@@ -23,15 +23,24 @@ router.post("/signup", signupUser);
 
 router.use(authChecker);
 
+// Get user profile
+
 router.get("/:id", getUserData);
 
+// Update user profile
+
 router.patch("/:id", updateUserData);
+
+// Change password
 
 router.patch("/:id/password", updateUserPassword);
 
 // Alerts
 
+// Fetch user alert status
 router.get("/alert/:id", getUserAlert);
+
+// Reset user alert status
 
 router.patch("/alert/reset/:id", resetUserAlert);
 

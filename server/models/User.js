@@ -18,6 +18,8 @@ const pointSchema = new mongoose.Schema({
   },
 });
 
+// User Schema
+
 const userSchema = new Schema({
   email: {
     type: String,

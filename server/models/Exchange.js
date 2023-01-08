@@ -2,6 +2,8 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
+// Exchange Schema
+
 const exchangeSchema = new Schema(
   {
     sender: {

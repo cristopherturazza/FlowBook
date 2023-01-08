@@ -1,11 +1,12 @@
-const { stat } = require("fs");
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 
+// Create a new token with jwt
 const createToken = (_id) => {
   return jwt.sign({ _id }, process.env.JWT_SECRET_PHRASE, { expiresIn: "3d" });
 };
 
+// Login controller
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
@@ -24,6 +25,8 @@ const loginUser = async (req, res) => {
     console.log(err.message);
   }
 };
+
+// Signup controller
 
 const signupUser = async (req, res) => {
   const { email, password, fullname, gender, birthdate, city, location } =
@@ -46,6 +49,8 @@ const signupUser = async (req, res) => {
   }
 };
 
+// Get user profile
+
 const getUserData = async (req, res) => {
   const id = req.params.id;
   try {
@@ -57,6 +62,8 @@ const getUserData = async (req, res) => {
     console.log(err.message);
   }
 };
+
+// Update user profile
 
 const updateUserData = async (req, res) => {
   const id = req.params.id;
@@ -77,6 +84,8 @@ const updateUserData = async (req, res) => {
   }
 };
 
+// Update user password
+
 const updateUserPassword = async (req, res) => {
   const id = req.params.id;
   const { password } = req.body;
@@ -89,6 +98,8 @@ const updateUserPassword = async (req, res) => {
   }
 };
 
+// Fetch user alert status
+
 const getUserAlert = async (req, res) => {
   const { id } = req.params;
 
@@ -100,6 +111,9 @@ const getUserAlert = async (req, res) => {
     console.log(err.message);
   }
 };
+
+// Reset user alert status
+
 const resetUserAlert = async (req, res) => {
   const { id } = req.params;
 
