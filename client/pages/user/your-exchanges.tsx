@@ -72,7 +72,7 @@ const Exchanges: React.FC = () => {
         <div className="divider"></div>
         {isLoading ? (
           <div className="text-center xl:min-w-[896px] animate-pulse"></div>
-        ) : isError || !data.received.length ? (
+        ) : isError || !data.sent.length ? (
           <div className="text-center xl:min-w-[896px]">
             Nessuna richiesta inviata al momento.
           </div>
