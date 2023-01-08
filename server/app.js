@@ -33,6 +33,12 @@ app.use("/api/users", usersRoute);
 app.use("/api/books", booksRoute);
 app.use("/api/exchanges", exchangesRoute);
 
+// Render Health Check Path
+
+app.get("/api", (req, res) => {
+  res.status(200).json({ message: "FlowBook Web Service" });
+});
+
 // error 404
 app.get("*", (req, res) => {
   res.status(404).json({ message: "404 Not Found" });
