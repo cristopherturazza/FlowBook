@@ -60,7 +60,7 @@ const UserProfile: React.FC = () => {
       const fetchProfile = async () => {
         try {
           const res = await axios.get(
-            `http://localhost:3000/api/users/${userData?.id}`,
+            `${process.env.NEXT_PUBLIC_API_PATH}/api/users/${userData?.id}`,
             {
               headers: {
                 "Content-Type": "application/json",
