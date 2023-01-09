@@ -57,7 +57,9 @@ const Dashboard: React.FC = () => {
   });
 
   const memoBooks = useMemo(() => {
-    return isError ? (
+    return isFetching && !isFetchingNextPage ? (
+      <Loading />
+    ) : isError ? (
       <p> Qualcosa è andato storto! </p>
     ) : data?.pages[0].result.books.length === 0 ? (
       <div className="flex justify-center items-center mt-12">

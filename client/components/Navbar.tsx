@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useAuthContext } from "../hooks/useAuthContext";
+import { useRouter } from "next/router";
 
 interface IMenu {
   menuToggle: boolean;
@@ -15,12 +16,31 @@ const Navbar: React.FC<IMenu> = ({
   resetAlert,
 }) => {
   const { userData } = useAuthContext();
+  const router = useRouter();
 
   return (
     <div className="navbar fixed top-0 z-50 h-24 bg-darkred shadow-xl text-slate-50">
       <h1 className="navbar-start text-sand px-6 xl:px-16 py-6 font-bold text-2xl xl:text-4xl tracking-tight">
         <Link href={userData?.isLoggedIn ? "/user/dashboard" : "/"}>
-          FlowBook
+          {router.asPath === "/login" ||
+          router.asPath === "/signup" ||
+          router.asPath === "/" ||
+          router.asPath === "/user/dashboard" ? (
+            "FlowBook"
+          ) : (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              className="w-8 h-8"
+            >
+              <path
+                fillRule="evenodd"
+                d="M11.03 3.97a.75.75 0 010 1.06l-6.22 6.22H21a.75.75 0 010 1.5H4.81l6.22 6.22a.75.75 0 11-1.06 1.06l-7.5-7.5a.75.75 0 010-1.06l7.5-7.5a.75.75 0 011.06 0z"
+                clipRule="evenodd"
+              />
+            </svg>
+          )}
         </Link>
       </h1>
       <div className="navbar-end text-sand pr-4 xl:pr-16">

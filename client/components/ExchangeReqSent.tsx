@@ -33,7 +33,7 @@ const ExchangeReqSent: React.FC<ExchangeProps> = (props) => {
     });
 
   return (
-    <div className="flex flex-col xl:grid xl:grid-cols-12 mb-4">
+    <div className="flex flex-col items-center xl:grid xl:grid-cols-12 mb-4">
       <Image
         src={props.cover ?? bookPlaceholder}
         alt="Book Cover"
@@ -41,31 +41,31 @@ const ExchangeReqSent: React.FC<ExchangeProps> = (props) => {
         width={150}
         height={90}
       />
-      <div className="flex flex-col px-6 xl:border-r xl:col-span-4">
+      <div className="flex flex-col text-center xl:text-start px-6 pt-6 xl:pt-0 xl:border-r xl:col-span-4">
         <h1 className="font-bold">Titolo</h1>
         <LinesEllipsis
           text={props.title}
           maxLine="1"
           ellipsis="..."
           basedOn="letters"
-          className="mt-4"
+          className="xl:mt-4"
         />
       </div>
-      <div className="flex flex-col px-6 xl:border-r xl:col-span-2">
+      <div className="flex flex-col text-center xl:text-start px-6 pt-6 xl:pt-0 xl:border-r xl:col-span-2">
         <h1 className="font-bold">Data</h1>
-        <p className="mt-4">{localDate(props.date)}</p>
+        <p className="xl:mt-4">{localDate(props.date)}</p>
       </div>
-      <div className="flex flex-col px-6 xl:border-r xl:col-span-3">
+      <div className="flex flex-col text-center xl:text-start px-6 pt-6 xl:pt-0 xl:border-r xl:col-span-3">
         <h1 className="font-bold">Utente</h1>
         <LinesEllipsis
           text={props.user}
           maxLine="1"
           ellipsis="..."
           basedOn="letters"
-          className="mt-4"
+          className="xl:mt-4"
         />
       </div>
-      <div className="flex flex-col px-6 xl:col-span-2">
+      <div className="flex flex-col text-center xl:text-start px-6 py-6 xl:py-0 xl:col-span-2">
         <h1 className="font-bold">Risposta</h1>
         {props.status === "accepted" ? (
           <div
@@ -93,6 +93,7 @@ const ExchangeReqSent: React.FC<ExchangeProps> = (props) => {
           </p>
         )}
       </div>
+      <div className="xl:hidden divider"></div>
       <Dialog
         className={"relative z-50"}
         open={dialogStatus}
