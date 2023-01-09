@@ -123,7 +123,7 @@ const getBooks = async (req, res) => {
 
     const totalBooks = await Book.countDocuments().exec();
     const response = {
-      books: books.reverse(),
+      books: books,
       totalBooks: totalBooks,
     };
     res.status(200).json(response);
