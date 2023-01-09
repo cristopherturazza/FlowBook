@@ -116,7 +116,7 @@ const getBooks = async (req, res) => {
         "owner.gender": 0,
         "owner.birthdate": 0,
       })
-      .sort({ $natural: -1 })
+      .sort({ _id: -1 })
       .skip(pageSkip)
       .limit(pageSize);
 
