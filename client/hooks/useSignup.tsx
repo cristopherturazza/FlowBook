@@ -34,7 +34,7 @@ export const useSignup = () => {
     try {
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_API_PATH}/api/users/signup`,
-        { email, password, fullname, gender, birthdate, city },
+        { email, password, fullname, gender, birthdate, city, location },
         {
           headers: {
             "Content-Type": "application/json",
