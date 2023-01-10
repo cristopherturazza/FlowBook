@@ -6,12 +6,31 @@ import Footer from "./Footer";
 import Sidebar from "./Sidebar";
 import NotLoggedIn from "./NotLoggedIn";
 import axios from "axios";
+import { useLogout } from "../hooks/useLogout";
 
 const Layout: React.FC<PropsWithChildren> = ({ children }) => {
   const [menuToggle, setMenuToggle] = useState(false);
   const { userData } = useAuthContext();
   const [userAlert, setUserAlert] = useState(false);
   const router = useRouter();
+  const { logout } = useLogout();
+
+  useEffect(() => {
+    const checkJWT = async () => {
+      const check = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_PATH}/api/users/${userData?.id}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Authorization: `Bearer ${userData?.token}`,
+          },
+        }
+      );
+      check.status === 401 ? logout() : null;
+    };
+    userData?.id ? checkJWT() : null;
+  }, [router.asPath]);
 
   useEffect(() => {
     const alert = async () => {

@@ -42,7 +42,9 @@ const Exchanges: React.FC = () => {
         <h3 className="font-bold text-xl text-darkblue">Richieste Ricevute</h3>
         <div className="divider"></div>
         {isLoading ? (
-          <div className="text-center xl:min-w-[896px] animate-pulse"></div>
+          <div className="text-center xl:min-w-[896px] animate-pulse">
+            Attendere...
+          </div>
         ) : isError || !data.received.length ? (
           <div className="text-center xl:min-w-[896px]">
             Nessuna richiesta ricevuta al momento.
@@ -71,7 +73,9 @@ const Exchanges: React.FC = () => {
         <h3 className="font-bold text-xl text-darkblue">Richieste Inviate</h3>
         <div className="divider"></div>
         {isLoading ? (
-          <div className="text-center xl:min-w-[896px] animate-pulse"></div>
+          <div className="text-center xl:min-w-[896px] animate-pulse">
+            Attendere...
+          </div>
         ) : isError || !data.sent.length ? (
           <div className="text-center xl:min-w-[896px]">
             Nessuna richiesta inviata al momento.

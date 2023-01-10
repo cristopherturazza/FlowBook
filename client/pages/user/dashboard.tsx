@@ -46,6 +46,7 @@ const Dashboard: React.FC = () => {
     hasNextPage,
     isFetching,
     isFetchingNextPage,
+    isLoading,
   } = useInfiniteQuery({
     queryKey: ["book", query, category, distance, status],
     queryFn: fetchBooks,
@@ -57,7 +58,7 @@ const Dashboard: React.FC = () => {
   });
 
   const memoBooks = useMemo(() => {
-    return isFetching && !isFetchingNextPage ? (
+    return isLoading ? (
       <Loading />
     ) : isError ? (
       <p> Qualcosa è andato storto! </p>
