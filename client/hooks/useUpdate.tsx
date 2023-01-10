@@ -5,16 +5,16 @@ import { useAuthContext } from "./useAuthContext";
 import { HintCity } from "../types/HintCity";
 
 interface userProfile {
-  id: String | undefined;
+  id?: String;
   fullname?: String;
   birthdate?: String;
   gender?: String;
   city?: {
-    place_id: String;
-    city: String;
-    county_code: String;
+    place_id?: String | React.Key;
+    city?: String;
+    county_code?: String;
   };
-  location?: [Number, Number];
+  location?: [Number] | any;
 }
 
 export const useUpdate = () => {
