@@ -17,17 +17,20 @@ const Layout: React.FC<PropsWithChildren> = ({ children }) => {
 
   useEffect(() => {
     const checkJWT = async () => {
-      const check = await axios.get(
-        `${process.env.NEXT_PUBLIC_API_PATH}/api/users/${userData?.id}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-            Authorization: `Bearer ${userData?.token}`,
-          },
-        }
-      );
-      check.status === 401 ? logout() : null;
+      try {
+        const check = await axios.get(
+          `${process.env.NEXT_PUBLIC_API_PATH}/api/users/${userData?.id}`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+              Authorization: `Bearer ${userData?.token}`,
+            },
+          }
+        );
+      } catch (err: any) {
+        err.response.status ? logout() : null;
+      }
     };
     userData?.id ? checkJWT() : null;
   }, [router.asPath]);
