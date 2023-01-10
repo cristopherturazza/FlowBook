@@ -13,7 +13,9 @@ type User = {
   email: String;
   token: String;
   id: String;
-  location: [Number] | [];
+  location: {
+    coordinates: [number, number] | [];
+  } | null;
   isLoggedIn: Boolean;
 } | null;
 
@@ -28,7 +30,7 @@ export const authReducer = (state: User, action: ActionType): User => {
       return {
         email: action.payload?.email ?? "",
         token: action.payload?.token ?? "",
-        location: action.payload?.location ?? [],
+        location: action.payload?.location ?? null,
         id: action.payload?.id ?? "",
         isLoggedIn: true,
       };
