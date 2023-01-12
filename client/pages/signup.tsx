@@ -70,7 +70,7 @@ const Signup: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center ">
-      <h3 className="text-5xl xl:text-7xl xl:max-w-none max-w-[9ch] text-center font-black mt-8 text-darkblue tracking-tighter">
+      <h3 className="text-5xl xl:text-7xl xl:max-w-none max-w-[9ch] text-center font-black mt-12 text-darkblue tracking-tighter">
         Partecipa al flusso
       </h3>
       <form
@@ -172,7 +172,7 @@ const Signup: React.FC = () => {
           maiuscola, almeno un numero e almeno un simbolo.
         </small>
         <div className="xl:grid xl:grid-cols-3 gap-2 my-4">
-          <div className="flex flex-col dropdown dropdown-bottom mb-8">
+          <div className="flex flex-col dropdown dropdown-bottom mb-4">
             <label className="label font-serif text-lg font-semibold text-darkblue">
               Città:
             </label>
@@ -208,12 +208,16 @@ const Signup: React.FC = () => {
                 </ul>
               )}
             </div>
+            <small className="mt-2">
+              Digitare le prime lettere e selezionare la propria città dal menù
+              a tendina.
+            </small>
           </div>
-          <div className="flex flex-col items-center xl:items-start  ">
+          <div className="flex flex-col items-start mb-4 xl:mx-16">
             <label className="label font-serif text-lg font-semibold text-darkblue">
               Genere:
             </label>
-            <div className="flex flex-row">
+            <div className="flex flex-row justify-between w-full mt-2">
               <label className="flex flex-col items-center pl-2">
                 <input
                   type="radio"
@@ -305,7 +309,7 @@ const Signup: React.FC = () => {
         <div className="flex flex-col items-center justify-center">
           <button
             disabled={isLoading}
-            className="mb-8 btn btn-md md:btn-md lg:btn-lg bg-darkblue hover:bg-lightblue text-slate-50"
+            className="my-8 xl:mb-8 xl:my-0 btn btn-lg bg-darkblue hover:bg-lightblue text-slate-50"
           >
             {isLoading ? (
               <div>
