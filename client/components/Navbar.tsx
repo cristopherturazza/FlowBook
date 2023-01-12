@@ -54,7 +54,7 @@ const Navbar: React.FC<IMenu> = ({
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="w-4 h-4 xl:mr-2"
+                  className="w-6 h-6 xl:w-4 xl:h-6 xl:mr-2"
                 >
                   <path
                     strokeLinecap="round"
@@ -73,7 +73,7 @@ const Navbar: React.FC<IMenu> = ({
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="w-4 h-4 xl:mr-2"
+                  className="w-6 h-6 xl:w-4 xl:h-4 xl:mr-2"
                 >
                   <path
                     strokeLinecap="round"

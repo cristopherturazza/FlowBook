@@ -14,16 +14,16 @@ const Home: React.FC = () => {
           Partecipa al flusso e scambia libri usati con altri appassionati di
           lettura intorno a te
         </p>
-        <div className="flex justify-center w-full my-16">
+        <div className="flex flex-col xl:flex-row xl:justify-center xl:w-full my-16">
           <Link
             href="/login"
-            className="my-8 btn btn-md md:btn-md lg:btn-lg bg-scarletred text-sand hover:bg-darkred"
+            className="my-8 btn btn-lg bg-scarletred text-sand hover:bg-darkred"
           >
             Accedi
           </Link>
           <Link
             href="/signup"
-            className="my-8 ml-8 btn btn-md  md:btn-md lg:btn-lg bg-darkblue hover:bg-lightblue text-slate-50"
+            className="my-8 xl:ml-8 btn btn-lg bg-darkblue hover:bg-lightblue text-slate-50"
           >
             Registrati
           </Link>
@@ -42,7 +42,7 @@ const Home: React.FC = () => {
         </div>
         <div className="xl:ml-12">
           <h3 className="mt-8 xl:mt-0 text-5xl font-black text-darkblue tracking-tighter">
-            E' sociale, è sostenibile.
+            È sociale, è sostenibile.
           </h3>
           <p className="font-semibold font-serif text-xl italic mt-4">
             Un libro è per sempre, il proprietario{" "}

@@ -69,7 +69,7 @@ userSchema.statics.signup = async function (
     throw Error("Si prega di riempire tutti i campi obbligatori");
   }
 
-  if (!city && location) {
+  if (!city || !location) {
     throw Error(
       "Selezionare una città tra quelle suggerite nel menu a tendina"
     );
