@@ -4,6 +4,11 @@ const validator = require("validator");
 
 const Schema = mongoose.Schema;
 
+// check empty objects
+function isEmpty(obj) {
+  return Object.keys(obj).length === 0;
+}
+
 // schema for GeoJSON search
 
 const pointSchema = new mongoose.Schema({
@@ -70,6 +75,15 @@ userSchema.statics.signup = async function (
   }
 
   if (!city || !location) {
+    throw Error(
+      "Selezionare una città tra quelle suggerite nel menu a tendina"
+    );
+  }
+  if (
+    !city.hasOwnProperty("county_code") ||
+    !city.hasOwnProperty("city") ||
+    !city.hasOwnProperty("place_id")
+  ) {
     throw Error(
       "Selezionare una città tra quelle suggerite nel menu a tendina"
     );
