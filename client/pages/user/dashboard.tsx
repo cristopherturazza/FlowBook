@@ -73,7 +73,7 @@ const Dashboard: React.FC = () => {
       <div className="overflow-auto">
         {data?.pages.map((page, i) => (
           <div
-            className="xl:grid xl:grid-cols-4 mx-20 lg:mx-28 gap-y-4 overflow-auto"
+            className="md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mx-20 lg:mx-28 gap-y-4 overflow-auto"
             key={i}
           >
             {page.result.books.map((book: any) => (
@@ -94,7 +94,7 @@ const Dashboard: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center ">
-      <h3 className="text-5xl xl:text-7xl font-black text-center mt-12 text-darkblue tracking-tighter">
+      <h3 className="text-5xl lg:text-6xl xl:text-7xl font-black text-center mt-12 text-darkblue tracking-tighter">
         {" "}
         Esplora il flusso{" "}
       </h3>

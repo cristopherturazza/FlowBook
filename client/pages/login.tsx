@@ -25,11 +25,11 @@ const Login: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center ">
-      <h3 className="text-5xl xl:text-7xl font-black mt-12 text-darkblue tracking-tighter">
+      <h3 className="text-5xl xl:text-7xl font-black mt-16 text-darkblue tracking-tighter">
         Oh, rieccoti!
       </h3>
       <form
-        className="flex flex-col mt-4 form-control min-w-[250px] xl:min-w-[400px]"
+        className="flex flex-col mt-8 form-control min-w-[250px] md:min-w-[400px]"
         onSubmit={handleSubmit}
       >
         <label className="label font-serif text-lg font-semibold text-darkblue">
@@ -75,7 +75,7 @@ const Login: React.FC = () => {
         <div className="flex justify-center">
           <button
             disabled={isLoading}
-            className="mt-2 btn btn-md md:btn-md lg:btn-lg bg-darkblue hover:bg-lightblue text-slate-50"
+            className="mt-2 btn btn-md md:btn-lg bg-darkblue hover:bg-lightblue text-slate-50"
           >
             {isLoading ? (
               <div>

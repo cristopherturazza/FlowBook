@@ -76,11 +76,11 @@ const Signup: React.FC = () => {
         Partecipa al flusso
       </h3>
       <form
-        className="flex flex-col mt-6 form-control max-w-[250px] xl:max-w-none xl:min-w-[400px]"
+        className="flex flex-col mt-6 form-control max-w-[250px] md:max-w-[400px] lg:max-w-[700px] "
         onSubmit={handleSubmit}
         autoComplete="new-password"
       >
-        <div className="xl:grid xl:grid-cols-2 gap-6 ">
+        <div className="lg:grid lg:grid-cols-2 gap-6 ">
           <div className="flex flex-col">
             <label className="label font-serif text-lg font-semibold text-darkblue">
               Email:
@@ -173,7 +173,7 @@ const Signup: React.FC = () => {
           La password deve contenere almeno 8 caratteri, minimo una lettera
           maiuscola, almeno un numero e almeno un simbolo.
         </small>
-        <div className="xl:grid xl:grid-cols-3 gap-2 my-4">
+        <div className="lg:grid lg:grid-cols-3 gap-2 my-4">
           <div className="flex flex-col dropdown dropdown-bottom mb-4">
             <label className="label font-serif text-lg font-semibold text-darkblue">
               Città:
@@ -215,11 +215,11 @@ const Signup: React.FC = () => {
               a tendina.
             </small>
           </div>
-          <div className="flex flex-col items-start mb-4 xl:mx-16">
+          <div className="flex flex-col items-start mb-4">
             <label className="label font-serif text-lg font-semibold text-darkblue">
               Genere:
             </label>
-            <div className="flex flex-row justify-between w-full mt-2">
+            <div className="flex flex-row justify-evenly px-12 w-full mt-2">
               <label className="flex flex-col items-center pl-2">
                 <input
                   type="radio"
@@ -311,7 +311,7 @@ const Signup: React.FC = () => {
         <div className="flex flex-col items-center justify-center">
           <button
             disabled={isLoading}
-            className="my-8 xl:mb-8 xl:my-0 btn btn-lg bg-darkblue hover:bg-lightblue text-slate-50"
+            className="my-12 xl:mb-12 xl:my-0 btn btn-lg bg-darkblue hover:bg-lightblue text-slate-50"
           >
             {isLoading ? (
               <div>

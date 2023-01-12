@@ -10,11 +10,11 @@ const Home: React.FC = () => {
         <h1 className="font-black text-6xl xl:text-9xl tracking-tighter text-sand mt-24 drop-shadow-xl">
           FlowBook
         </h1>
-        <p className="text-sand font-serif mt-4 text-xl xl:text-3xl max-w-[50vw] text-center drop-shadow-lg">
+        <p className="text-sand font-serif mt-4 text-xl lg:text-3xl max-w-[50vw] text-center drop-shadow-lg">
           Partecipa al flusso e scambia libri usati con altri appassionati di
           lettura intorno a te
         </p>
-        <div className="flex flex-col xl:flex-row xl:justify-center xl:w-full my-16">
+        <div className="flex flex-col lg:flex-row lg:justify-center lg:w-full my-16">
           <Link
             href="/login"
             className="my-8 btn btn-lg bg-scarletred text-sand hover:bg-darkred"
@@ -23,13 +23,13 @@ const Home: React.FC = () => {
           </Link>
           <Link
             href="/signup"
-            className="my-8 xl:ml-8 btn btn-lg bg-darkblue hover:bg-lightblue text-slate-50"
+            className="my-8 lg:ml-8 btn btn-lg bg-darkblue hover:bg-lightblue text-slate-50"
           >
             Registrati
           </Link>
         </div>
       </div>
-      <div className="xl:grid xl:grid-cols-2 my-20 mx-20 xl:mx-32">
+      <div className="lg:grid lg:grid-cols-2 my-20 mx-20 lg:mx-24 xl:mx-32">
         <div>
           <Image
             src={bookSharing}
@@ -40,8 +40,8 @@ const Home: React.FC = () => {
             className="rounded-lg"
           ></Image>
         </div>
-        <div className="xl:ml-12">
-          <h3 className="mt-8 xl:mt-0 text-5xl font-black text-darkblue tracking-tighter">
+        <div className="lg:ml-12">
+          <h3 className="mt-8 lg:mt-0 text-5xl font-black text-darkblue tracking-tighter">
             È sociale, è sostenibile.
           </h3>
           <p className="font-semibold font-serif text-xl italic mt-4">
@@ -54,7 +54,7 @@ const Home: React.FC = () => {
             con tanti appassionati di lettura come te. <br /> Un flusso costante
             e sostenibile di cultura, alimentalo con noi.
           </p>
-          <div className="flex flex-col-reverse xl:flex-row justify-between items-center font-serif text-lg mt-6">
+          <div className="flex flex-col-reverse lg:flex-row justify-between items-center font-serif text-lg mt-6">
             <a
               target="_blank"
               href="https://unric.org/it/obiettivo-12-garantire-modelli-sostenibili-di-produzione-e-di-consumo/"
@@ -64,10 +64,10 @@ const Home: React.FC = () => {
                 alt={"ONU - Agenda 2030"}
                 width={160}
                 height={160}
-                className="my-8 xl:my-4"
+                className="my-12 lg:my-4"
               ></Image>
             </a>
-            <p className="xl:ml-4">
+            <p className="lg:ml-4">
               Ispirato dall'obiettivo numero 12 dell'Agenda 2030 ONU: Garantire
               modelli sostenibili di produzione e di consumo
             </p>

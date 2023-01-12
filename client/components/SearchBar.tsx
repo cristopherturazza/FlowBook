@@ -63,7 +63,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
         >
           Search
         </label>
-        <div className="flex xl:flex-row flex-col items-center">
+        <div className="flex lg:flex-row flex-col items-center">
           <div className="flex relative">
             <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
               <svg
@@ -85,7 +85,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
             <input
               type="text"
               id="default-search"
-              className="block font-serif w-[30ch] xl:w-[50ch] p-4 pl-10 text-sm text-darkblue border border-slate-300 rounded-lg outline-none bg-slate-50 focus:ring-lightblue focus:border-lightblue"
+              className="block font-serif w-[30ch] md:w-[40ch]  lg:w-[50ch] p-4 pl-10 text-sm text-darkblue border border-slate-300 rounded-lg outline-none bg-slate-50 focus:ring-lightblue focus:border-lightblue"
               placeholder="Cerca nei titoli..."
               required
               value={query}
@@ -277,15 +277,15 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
               )}
             </Popover>
           </div>
-          <div className="flex gap-2 xl:gap-0">
+          <div className="flex mt-4 lg:mt-0 gap-2 lg:gap-0">
             <button
               type="submit"
-              className="text-slate-50 btn mt-4 xl:ml-4 xl:mt-0 bg-darkblue hover:bg-lightblue font-medium rounded-lg text-sm px-4 py-2"
+              className="text-slate-50 btn mt-4 lg:ml-4 lg:mt-0 bg-darkblue hover:bg-lightblue font-medium rounded-lg text-sm px-4 py-2"
             >
               Cerca
             </button>
             <button
-              className="text-slate-50 btn mt-4 xl:ml-4 xl:mt-0 bg-darkred hover:bg-scarletred font-medium rounded-lg text-sm px-4 py-2"
+              className="text-slate-50 btn mt-4 lg:ml-4 lg:mt-0 bg-darkred hover:bg-scarletred font-medium rounded-lg text-sm px-4 py-2"
               onClick={(e) => handleReset(e)}
             >
               <svg
