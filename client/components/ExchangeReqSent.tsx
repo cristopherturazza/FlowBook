@@ -69,7 +69,7 @@ const ExchangeReqSent: React.FC<ExchangeProps> = (props) => {
         <h1 className="font-bold">Risposta</h1>
         {props.status === "accepted" ? (
           <div
-            className="flex justify-center items-center cursor-pointer bg-emerald-600 text-slate-50 text-center p-1 rounded-xl mt-3 space-x-1"
+            className="flex justify-center items-center cursor-pointer bg-emerald-600 text-slate-50 text-center py-1 px-4 rounded-xl mt-3 space-x-1"
             onClick={() => setDialogStatus(!dialogStatus)}
           >
             Apri{" "}
@@ -84,11 +84,11 @@ const ExchangeReqSent: React.FC<ExchangeProps> = (props) => {
             </svg>
           </div>
         ) : props.status === "rejected" ? (
-          <p className="bg-scarletred text-slate-50 text-center p-1 rounded-xl mt-3 space-x-1">
+          <p className="bg-scarletred text-slate-50 text-center py-1 px-4 rounded-xl mt-3 space-x-1">
             Rifiutato
           </p>
         ) : (
-          <p className="bg-amber-500 text-slate-50 text-center p-1 rounded-xl mt-3 space-x-1">
+          <p className="bg-amber-500 text-slate-50 text-center py-1 px-4 rounded-xl mt-3 space-x-1">
             In attesa
           </p>
         )}

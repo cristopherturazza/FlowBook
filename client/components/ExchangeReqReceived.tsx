@@ -79,11 +79,11 @@ const ExchangeReqReceived: React.FC<ExchangeProps> = (props) => {
       <div className="flex flex-col text-center xl:text-start px-6 py-6 xl:py-0 xl:col-span-2">
         <h1 className="font-bold">Risposta</h1>
         {props.status === "accepted" ? (
-          <p className="bg-emerald-600 text-slate-50 text-center p-1 rounded-xl mt-3 space-x-1">
+          <p className="bg-emerald-600 text-slate-50 text-center py-1 px-4 rounded-xl mt-3 space-x-1">
             Accettato
           </p>
         ) : props.status === "rejected" ? (
-          <p className="bg-scarletred text-slate-50 text-center p-1 rounded-xl mt-3 space-x-1">
+          <p className="bg-scarletred text-slate-50 text-center py-1 px-4 rounded-xl mt-3 space-x-1">
             Rifiutato
           </p>
         ) : (
