@@ -1,14 +1,18 @@
 import { createContext, useReducer, useEffect, PropsWithChildren } from "react";
 
+// Initial State
 const user: User | null = null;
 
+// Logged in status
 let isLoggedIn: Boolean = false;
 
+// Create Authcontext
 export const AuthContext = createContext<{
   userData: User;
   dispatch: React.Dispatch<ActionType>;
 }>({ userData: user, dispatch: () => {} });
 
+// Reducer Types
 type User = {
   email: String;
   token: String;
@@ -23,6 +27,8 @@ type ActionType = {
   type: "LOGIN" | "LOGOUT";
   payload?: User;
 };
+
+// Auth reducer
 
 export const authReducer = (state: User, action: ActionType): User => {
   switch (action.type) {
@@ -41,6 +47,7 @@ export const authReducer = (state: User, action: ActionType): User => {
   }
 };
 
+// Context Component
 export const AuthContextProvider: React.FC<PropsWithChildren> = ({
   children,
 }) => {

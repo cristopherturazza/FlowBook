@@ -39,6 +39,8 @@ const UserProfile: React.FC = () => {
     }
   };
 
+  // set city selected from hinter
+
   const handleCity = (city: HintCity) => {
     if (typeof city.city === "string") {
       setCity(`${city.city} (${city.county_code})`);
@@ -54,6 +56,8 @@ const UserProfile: React.FC = () => {
 
     setSelectedCity(selected);
   };
+
+  // User Data fetcher
 
   useEffect(() => {
     if (userData?.id) {
@@ -82,6 +86,8 @@ const UserProfile: React.FC = () => {
       fetchProfile();
     }
   }, [userData]);
+
+  // Fetch cities from Geoapify
 
   useEffect(() => {
     const fetchCities = async () => {

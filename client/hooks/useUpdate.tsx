@@ -17,6 +17,8 @@ interface userProfile {
   location?: [Number] | any;
 }
 
+// Update user data
+
 export const useUpdate = () => {
   const { userData } = useAuthContext();
 

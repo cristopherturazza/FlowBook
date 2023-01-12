@@ -31,10 +31,14 @@ const ExchangeReqReceived: React.FC<ExchangeProps> = (props) => {
       year: "numeric",
     });
 
+  // refetch when rejected
+
   const handleRejected = () => {
     updateExchange(props.id, "rejected");
     props.trigger();
   };
+
+  // refetch and reeset when accepted
 
   const handleAccepted = () => {
     updateExchange(props.id, "accepted", replyMessage);

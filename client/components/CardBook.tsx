@@ -12,6 +12,8 @@ interface CardBookProps {
   id: string;
 }
 
+// Book Cards Component
+
 const CardBook: React.FC<CardBookProps> = (props) => {
   const router = useRouter();
 

@@ -30,14 +30,20 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
     "Manuali",
   ];
 
+  // send query to parent
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     onSearch(query, category, status, distance);
   };
 
+  // send filter query to parent
+
   const handleFilter = (e: React.FormEvent) => {
     onSearch(query, category, status, distance);
   };
+
+  // reset query
 
   const handleReset = (e: React.FormEvent) => {
     e.preventDefault();

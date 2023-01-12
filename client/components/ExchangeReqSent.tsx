@@ -19,6 +19,8 @@ const ExchangeReqSent: React.FC<ExchangeProps> = (props) => {
   const [dialogStatus, setDialogStatus] = useState(false);
   const [copySuccess, setCopySuccess] = useState(false);
 
+  // Copy to clipboard function
+
   const handleClipboard = () => {
     navigator.clipboard.writeText(props.userEmail ?? "");
     setCopySuccess(true);

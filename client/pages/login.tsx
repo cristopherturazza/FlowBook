@@ -12,6 +12,7 @@ const Login: React.FC = () => {
   const { userData } = useAuthContext();
   const router = useRouter();
 
+  // if logged in is redirected to the dashboard
   useEffect(() => {
     userData?.isLoggedIn === true ? router.push("/user/dashboard") : null;
   }, [userData]);

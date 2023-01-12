@@ -16,6 +16,8 @@ export const useExchange = () => {
   const [isDone, setIsDone] = useState(false);
   const [isWorking, setIsWorking] = useState(false);
 
+  // Create a new exchange
+
   const addExchangeRequest = async (request: ERequest) => {
     setExError("");
     setIsWorking(true);
@@ -42,6 +44,8 @@ export const useExchange = () => {
       setExError(error?.response.data.error);
     }
   };
+
+  // Change exchange status
 
   const updateExchange = async (
     id: string,

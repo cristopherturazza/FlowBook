@@ -13,6 +13,8 @@ export const useNewPassword = () => {
   const [isDone, setIsDone] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
+  // Change the user password
+
   const updatePassword = async (password: String) => {
     setIsLoading(true);
     setIsError(false);

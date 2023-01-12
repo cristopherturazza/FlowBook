@@ -6,6 +6,8 @@ export const useLogout = () => {
 
   const router = useRouter();
 
+  // User logout function
+
   const logout = () => {
     localStorage.removeItem("user");
     dispatch({ type: "LOGOUT" });

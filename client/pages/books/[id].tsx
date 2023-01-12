@@ -65,8 +65,10 @@ const Book: React.FC = () => {
               height={300}
               className="rounded-md mt-12"
             ></Image>
-            <div className="mt-12 xl:ml-12">
-              <p className="flex items-center xl:text-xl my-2 font-serif">
+            <div className="mt-12 xl:ml-20">
+              <h3 className="font-bold text-2xl">Informazioni</h3>
+              <div className="divider"></div>
+              <p className="flex items-center xl:text-xl my-3 font-serif">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -85,7 +87,7 @@ const Book: React.FC = () => {
                 <strong className="mr-2">Autore/i: </strong>
                 {data.author}
               </p>
-              <p className="flex items-center xl:text-xl my-2 font-serif">
+              <p className="flex items-center xl:text-xl my-3 font-serif">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -109,7 +111,7 @@ const Book: React.FC = () => {
                 <strong className="mr-2">Codice ISBN: </strong>
                 {data.isbn}
               </p>
-              <p className="flex items-center xl:text-xl my-2 font-serif">
+              <p className="flex items-center xl:text-xl my-3 font-serif">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -133,7 +135,7 @@ const Book: React.FC = () => {
                 <strong className="mr-2">Categoria: </strong>
                 {data.category}
               </p>
-              <p className="flex items-center xl:text-xl my-2 font-serif">
+              <p className="flex items-center xl:text-xl my-3 font-serif">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -171,7 +173,7 @@ const Book: React.FC = () => {
                 <strong className="mr-2">Stato del libro: </strong>
                 {data.status}
               </p>
-              <p className="flex items-center xl:text-xl my-2 font-serif">
+              <p className="flex items-center xl:text-xl my-3 font-serif">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -190,7 +192,7 @@ const Book: React.FC = () => {
                 <strong className="mr-2">Proprietario: </strong>
                 {userData?.id != data.owner._id ? data.owner.fullname : "Tu"}
               </p>
-              <p className="flex items-center xl:text-xl my-2 font-serif">
+              <p className="flex items-center xl:text-xl my-3 font-serif">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"

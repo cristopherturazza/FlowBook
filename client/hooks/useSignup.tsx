@@ -12,6 +12,8 @@ export const useSignup = () => {
 
   const router = useRouter();
 
+  // Create a new user
+
   const signup = async (
     email: String,
     password: String,

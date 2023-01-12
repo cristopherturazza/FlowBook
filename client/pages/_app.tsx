@@ -13,10 +13,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <div className="antialiased">
       <Head>
         <title>FlowBook</title>
-        <meta
-          name="description"
-          content="A social platform for book exchanges"
-        />
+        <meta name="FlowBook" content="A social platform for book exchanges" />
         <link rel="icon" href="/book-icon.ico" />
       </Head>
       <AuthContextProvider>

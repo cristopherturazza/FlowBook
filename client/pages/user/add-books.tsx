@@ -30,10 +30,14 @@ const AddBooks: React.FC = () => {
 
   const router = useRouter();
 
+  // Back to user books
+
   const handleGoBack = (e: React.FormEvent) => {
     e.preventDefault();
     router.push("/user/your-books");
   };
+
+  // Google Books API info fetcher
 
   const handleFetchBook = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -74,6 +78,8 @@ const AddBooks: React.FC = () => {
 
     addBook(book);
   };
+
+  // reset function
 
   const clearAll = () => {
     setIsbn("");

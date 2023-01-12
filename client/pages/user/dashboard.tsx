@@ -51,8 +51,11 @@ const Dashboard: React.FC = () => {
     queryKey: ["book", query, category, distance, status],
     queryFn: fetchBooks,
     getNextPageParam: (lastPage, pages) => {
-      if (lastPage.nextPage < lastPage.result.totalBooks / pageSize)
-        return lastPage.nextPage;
+      const remaining =
+        lastPage.result.totalBooks / pageSize >= 1
+          ? lastPage.result.totalBooks / pageSize
+          : 0;
+      if (lastPage.nextPage < remaining) return lastPage.nextPage;
       return undefined;
     },
   });
@@ -70,7 +73,7 @@ const Dashboard: React.FC = () => {
       <div className="overflow-auto">
         {data?.pages.map((page, i) => (
           <div
-            className="xl:grid xl:grid-cols-4 mx-20 lg:mx-28 gap-y-4"
+            className="xl:grid xl:grid-cols-4 mx-20 lg:mx-28 gap-y-4 overflow-auto"
             key={i}
           >
             {page.result.books.map((book: any) => (
@@ -104,7 +107,7 @@ const Dashboard: React.FC = () => {
         }}
         hasMore={hasNextPage}
         useWindow={true}
-        threshold={30}
+        threshold={0}
         loader={
           <div className="flex justify-center mb-20" key={0}>
             <Loading />

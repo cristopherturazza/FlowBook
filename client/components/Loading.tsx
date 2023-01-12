@@ -1,3 +1,5 @@
+// Spinning Loader Component
+
 const Loading = () => {
   return (
     <div>

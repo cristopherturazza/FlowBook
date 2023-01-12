@@ -11,6 +11,8 @@ export const useLogin = () => {
 
   const router = useRouter();
 
+  // Login user function
+
   const login = async (email: String, password: String) => {
     setIsLoading(true);
     setIsError(false);

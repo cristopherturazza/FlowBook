@@ -21,6 +21,8 @@ export const useBooks = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isChanged, setIsChanged] = useState(false);
 
+  // Get all the user books
+
   const getUserBooks = async () => {
     setError("");
     setIsLoading(true);
@@ -76,6 +78,8 @@ export const useBooks = () => {
       setError(error.response.data.error);
     }
   };
+
+  // Delete a book
 
   const removeBook = async (id: string) => {
     try {

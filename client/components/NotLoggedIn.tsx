@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+// Not Logged In error page
+
 const NotLoggedIn: React.FC = () => {
   return (
     <>

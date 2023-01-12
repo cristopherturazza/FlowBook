@@ -12,10 +12,12 @@ const Exchanges: React.FC = () => {
   const { userData } = useAuthContext();
   const [trigger, setTrigger] = useState(false);
 
+  // trigger for refetching
   const refetcher = () => {
     setTrigger(!trigger);
   };
 
+  // fetch user exchanges
   const fetchExchanges = async () => {
     const response = await axios.get(
       `${process.env.NEXT_PUBLIC_API_PATH}/api/exchanges/${userData?.id}`,
@@ -36,6 +38,7 @@ const Exchanges: React.FC = () => {
     keepPreviousData: true,
   });
 
+  // memo received exchanges
   const memoReceived = useMemo(() => {
     return (
       <div className="bg-slate-50 border border-slate-200 shadow-sm p-4 rounded-xl mt-8">
@@ -67,6 +70,7 @@ const Exchanges: React.FC = () => {
     );
   }, [data]);
 
+  // memo sent exchanges
   const memoSent = useMemo(() => {
     return (
       <div className="bg-slate-50 border border-slate-200 shadow-sm p-4 rounded-xl mt-8">

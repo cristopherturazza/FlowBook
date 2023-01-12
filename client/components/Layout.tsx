@@ -15,6 +15,8 @@ const Layout: React.FC<PropsWithChildren> = ({ children }) => {
   const router = useRouter();
   const { logout } = useLogout();
 
+  // Check if token is expired at every route change
+
   useEffect(() => {
     const checkJWT = async () => {
       try {
@@ -34,6 +36,8 @@ const Layout: React.FC<PropsWithChildren> = ({ children }) => {
     };
     userData?.id ? checkJWT() : null;
   }, [router.asPath]);
+
+  // sync alert status
 
   useEffect(() => {
     const alert = async () => {
