@@ -3,6 +3,7 @@ export interface HintCity {
   city?: String;
   name?: String;
   county_code?: String;
+  county?: String;
   lon?: Number;
   lat?: Number;
 }

@@ -43,13 +43,13 @@ const UserProfile: React.FC = () => {
 
   const handleCity = (city: HintCity) => {
     if (typeof city.city === "string") {
-      setCity(`${city.city} (${city.county_code})`);
+      setCity(`${city.city} (${city.county_code || city.county})`);
     }
 
     const selected = {
       place_id: city.place_id,
       city: city.city || city.name,
-      county_code: city.county_code,
+      county_code: city.county_code || city.county,
       lon: city.lon,
       lat: city.lat,
     };
@@ -168,7 +168,8 @@ const UserProfile: React.FC = () => {
                           handleCity(city);
                         }}
                       >
-                        {city.city || city.name} ({city.county_code})
+                        {city.city || city.name} (
+                        {city.county_code || city.county})
                       </li>
                     ))}
                 </ul>
