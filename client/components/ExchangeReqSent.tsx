@@ -39,7 +39,7 @@ const ExchangeReqSent: React.FC<ExchangeProps> = (props) => {
       <Image
         src={props.cover ?? bookPlaceholder}
         alt="Book Cover"
-        className="lg:w-[50px] lg:col-span-1 rounded-sm"
+        className="lg:w-[50px] lg:col-span-1 md:w-[200px] rounded-md"
         width={150}
         height={90}
       />
@@ -50,12 +50,12 @@ const ExchangeReqSent: React.FC<ExchangeProps> = (props) => {
           maxLine="1"
           ellipsis="..."
           basedOn="letters"
-          className="xl:mt-4"
+          className="lg:mt-4"
         />
       </div>
       <div className="flex flex-col text-center lg:text-start px-6 pt-6 lg:pt-0 lg:border-r lg:col-span-2">
         <h1 className="font-bold">Data</h1>
-        <p className="xl:mt-4">{localDate(props.date)}</p>
+        <p className="lg:mt-4">{localDate(props.date)}</p>
       </div>
       <div className="flex flex-col text-center lg:text-start px-6 pt-6 lg:pt-0 lg:border-r lg:col-span-3">
         <h1 className="font-bold">Utente</h1>
@@ -64,7 +64,7 @@ const ExchangeReqSent: React.FC<ExchangeProps> = (props) => {
           maxLine="1"
           ellipsis="..."
           basedOn="letters"
-          className="xl:mt-4"
+          className="lg:mt-4"
         />
       </div>
       <div className="flex flex-col text-center lg:text-start px-6 py-6 lg:py-0 lg:col-span-2">
