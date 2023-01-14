@@ -32,7 +32,7 @@ const UserBooks: React.FC = () => {
 
       {isLoading ? <Loading /> : null}
       {userBooks && userBooks.length > 0 && !isLoading ? (
-        <div className="xl:grid xl:grid-cols-4 xl:gap-8 mt-12">
+        <div className="md:grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 xl:gap-8 mt-12">
           {userBooks.map((book) => (
             <UserBook
               title={book.title}
@@ -55,13 +55,13 @@ const UserBooks: React.FC = () => {
         </>
       ) : null}
       <button
-        className="hidden xl:block my-16 btn btn-md md:btn-md lg:btn-lg bg-darkblue hover:bg-lightblue text-slate-50"
+        className="hidden lg:block my-16 btn btn-md md:btn-md lg:btn-lg bg-darkblue hover:bg-lightblue text-slate-50"
         onClick={() => router.push("/user/add-books")}
       >
         Aggiungi un libro
       </button>
       <button
-        className="xl:hidden fixed bottom-8 right-8 p-6 z-50 shadow-2xl bg-lightblue rounded-full text-slate-50"
+        className="lg:hidden fixed bottom-8 right-8 p-6 z-50 shadow-2xl bg-lightblue rounded-full text-slate-50"
         onClick={() => router.push("/user/add-books")}
       >
         <svg

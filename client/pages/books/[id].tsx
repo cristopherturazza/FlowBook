@@ -55,7 +55,7 @@ const Book: React.FC = () => {
           <h1 className="text-4xl xl:text-6xl max-w-[20ch] text-center font-black mt-12 text-darkblue tracking-tighter">
             {data.title}
           </h1>
-          <div className="flex flex-col items-center xl:flex-row justify-between">
+          <div className="flex flex-col items-center md:flex-row justify-between">
             <Image
               src={
                 data.cover && data.cover != "" ? data.cover : bookPlaceholder
@@ -65,7 +65,7 @@ const Book: React.FC = () => {
               height={300}
               className="rounded-md mt-12"
             ></Image>
-            <div className="mt-12 xl:ml-20">
+            <div className="mt-12 md:ml-20">
               <h3 className="font-bold text-2xl">Informazioni</h3>
               <div className="divider"></div>
               <p className="flex items-center xl:text-xl my-3 font-serif">

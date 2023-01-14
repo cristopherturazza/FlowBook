@@ -28,11 +28,11 @@ const ChangePassword: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center ">
-      <h3 className="text-5xl xl:text-7xl text-center font-black mt-12 text-darkblue tracking-tighter">
+      <h3 className="text-5xl md:text-7xl text-center font-black mt-12 text-darkblue tracking-tighter">
         Cambia Password
       </h3>
       <form
-        className="flex flex-col mt-6 form-control max-w-[250px] xl:max-w-[400px]"
+        className="flex flex-col mt-12 form-control max-w-[250px] md:max-w-[400px]"
         onSubmit={handleSubmit}
       >
         <div className="flex flex-col relative">
@@ -66,7 +66,7 @@ const ChangePassword: React.FC = () => {
             </svg>
           )}
         </div>
-        <div className="flex flex-col relative">
+        <div className="flex flex-col mt-8 relative">
           <label className="label font-serif text-lg font-semibold text-darkblue">
             Conferma Nuova Password:
           </label>
@@ -145,7 +145,7 @@ const ChangePassword: React.FC = () => {
         <div className="flex flex-col items-center justify-center mt-1">
           <button
             disabled={isLoading}
-            className="my-8 btn btn-md md:btn-md lg:btn-lg bg-darkblue hover:bg-lightblue text-slate-50"
+            className="my-12 btn btn-md md:btn-md lg:btn-lg bg-darkblue hover:bg-lightblue text-slate-50"
           >
             {isLoading ? (
               <div>

@@ -105,14 +105,14 @@ const UserProfile: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center ">
-      <h3 className="text-5xl xl:text-7xl font-black mt-12 text-darkblue tracking-tighter">
+      <h3 className="text-5xl md:text-7xl font-black mt-12 text-darkblue tracking-tighter">
         Il tuo profilo
       </h3>
       <form
-        className="flex flex-col mt-6 form-control min-w-[250px] xl:min-w-[400px]"
+        className="flex flex-col mt-8 form-control min-w-[250px] md:min-w-[400px]"
         onSubmit={handleSubmit}
       >
-        <div className="xl:grid xl:grid-cols-2 gap-6 ">
+        <div className="md:grid md:grid-cols-2 gap-6 ">
           <div className="flex flex-col">
             <label className="label font-serif text-lg font-semibold text-darkblue">
               Email:
@@ -137,7 +137,7 @@ const UserProfile: React.FC = () => {
             />
           </div>
         </div>
-        <div className="xl:grid xl:grid-cols-3 gap-2 xl:mt-4 mb-4">
+        <div className="md:grid md:grid-cols-3 gap-2 md:mt-8 mb-8">
           <div className="flex flex-col dropdown dropdown-bottom xl:mb-8">
             <label className="label font-serif text-lg font-semibold text-darkblue">
               Città:
@@ -269,10 +269,10 @@ const UserProfile: React.FC = () => {
           </div>
         ) : null}
 
-        <div className="flex flex-col xl:flex-row items-center justify-center my-4">
+        <div className="flex flex-col md:flex-row items-center justify-center my-4">
           <button
             disabled={isLoading}
-            className="mb-8 xl:mr-8 btn btn-md md:btn-md lg:btn-lg bg-darkblue hover:bg-lightblue text-slate-50"
+            className="mb-8 md:mr-8 btn btn-md md:btn-md lg:btn-lg bg-darkblue hover:bg-lightblue text-slate-50"
           >
             {isLoading ? (
               <div>

@@ -35,15 +35,15 @@ const ExchangeReqSent: React.FC<ExchangeProps> = (props) => {
     });
 
   return (
-    <div className="flex flex-col items-center xl:grid xl:grid-cols-12 mb-4">
+    <div className="flex flex-col items-center lg:grid lg:grid-cols-12 mb-4">
       <Image
         src={props.cover ?? bookPlaceholder}
         alt="Book Cover"
-        className="xl:w-[50px] xl:col-span-1 rounded-sm"
+        className="lg:w-[50px] lg:col-span-1 rounded-sm"
         width={150}
         height={90}
       />
-      <div className="flex flex-col text-center xl:text-start px-6 pt-6 xl:pt-0 xl:border-r xl:col-span-4">
+      <div className="flex flex-col text-center lg:text-start px-6 pt-6 lg:pt-0 lg:border-r lg:col-span-4">
         <h1 className="font-bold">Titolo</h1>
         <LinesEllipsis
           text={props.title}
@@ -53,11 +53,11 @@ const ExchangeReqSent: React.FC<ExchangeProps> = (props) => {
           className="xl:mt-4"
         />
       </div>
-      <div className="flex flex-col text-center xl:text-start px-6 pt-6 xl:pt-0 xl:border-r xl:col-span-2">
+      <div className="flex flex-col text-center lg:text-start px-6 pt-6 lg:pt-0 lg:border-r lg:col-span-2">
         <h1 className="font-bold">Data</h1>
         <p className="xl:mt-4">{localDate(props.date)}</p>
       </div>
-      <div className="flex flex-col text-center xl:text-start px-6 pt-6 xl:pt-0 xl:border-r xl:col-span-3">
+      <div className="flex flex-col text-center lg:text-start px-6 pt-6 lg:pt-0 lg:border-r lg:col-span-3">
         <h1 className="font-bold">Utente</h1>
         <LinesEllipsis
           text={props.user}
@@ -67,7 +67,7 @@ const ExchangeReqSent: React.FC<ExchangeProps> = (props) => {
           className="xl:mt-4"
         />
       </div>
-      <div className="flex flex-col text-center xl:text-start px-6 py-6 xl:py-0 xl:col-span-2">
+      <div className="flex flex-col text-center lg:text-start px-6 py-6 lg:py-0 lg:col-span-2">
         <h1 className="font-bold">Risposta</h1>
         {props.status === "accepted" ? (
           <div

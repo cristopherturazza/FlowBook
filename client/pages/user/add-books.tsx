@@ -100,20 +100,20 @@ const AddBooks: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center">
-      <h3 className="text-4xl xl:text-7xl font-black mt-12 text-darkblue tracking-tighter">
+      <h3 className="text-4xl md:text-5xl lg:text-7xl font-black mt-12 text-darkblue tracking-tighter">
         Aggiungi un libro
       </h3>
-      <p className="mt-8 mx-12 text-sm xl:text-lg text-center font-serif">
+      <p className="mt-8 mx-12 text-sm md:text-lg text-center font-serif">
         Cerca il tuo libro tramite il codice ISBN o inserisci i dati
         manualmente.
       </p>
       <form
-        className="flex flex-col mt-4 form-control min-w-[250px] xl:min-w-[400px]"
+        className="flex flex-col mt-4 form-control min-w-[250px] lg:min-w-[400px]"
         onSubmit={handleSubmit}
         autoComplete="off"
       >
         <label className="flex flex-col items-center label font-serif text-lg font-semibold text-darkblue">
-          <div className="flex flex-col xl:flex-row mt-4">
+          <div className="flex flex-col md:flex-row mt-4">
             <input
               type="text"
               onChange={(e) => setIsbn(e.target.value)}
@@ -123,9 +123,9 @@ const AddBooks: React.FC = () => {
               autoFocus
               autoComplete="off"
             />
-            <div className="flex mt-4 xl:mt-0 justify-center">
+            <div className="flex mt-4 md:mt-0 justify-center">
               <button
-                className="flex p-3 xl:ml-4 bg-darkblue text-white rounded-lg items-center hover:bg-lightblue transition-all duration-100 ease-in-out select-none"
+                className="flex p-3 md:ml-4 bg-darkblue text-white rounded-lg items-center hover:bg-lightblue transition-all duration-100 ease-in-out select-none"
                 onClick={(e) => handleFetchBook(e)}
               >
                 {isSearching ? (
@@ -199,7 +199,7 @@ const AddBooks: React.FC = () => {
 
         <div className="divider"></div>
 
-        <div className="flex flex-col items-center xl:flex-row gap-12">
+        <div className="flex flex-col items-center md:flex-row gap-12">
           <div>
             <Image
               src={cover != "" ? cover : bookPlaceholder}
@@ -208,7 +208,7 @@ const AddBooks: React.FC = () => {
               height={188}
               className="shadow-md"
             ></Image>
-            <div className="xl:hidden text-center max-w-[20ch] mt-4 mb-2 font-thin text-xs">
+            <div className="md:hidden text-center max-w-[20ch] mt-4 mb-2 font-thin text-xs">
               *Il caricamento manuale della cover attualmente non è disponibile.
             </div>
           </div>
@@ -220,7 +220,7 @@ const AddBooks: React.FC = () => {
                 required
                 onChange={(e) => setTitle(e.target.value)}
                 value={title}
-                className="input input-bordered mt-2 bg-slate-100 focus:outline-lightblue xl:min-w-[35ch]"
+                className="input input-bordered mt-2 bg-slate-100 focus:outline-lightblue md:min-w-[35ch]"
               ></input>
             </label>
             <label className="flex flex-col items-start label p-0 mt-4 font-serif text-lg font-semibold  text-darkblue">
@@ -230,16 +230,16 @@ const AddBooks: React.FC = () => {
                 required
                 onChange={(e) => setAuthor(e.target.value)}
                 value={author}
-                className="input input-bordered mt-2 bg-slate-100 focus:outline-lightblu xl:min-w-[35ch]"
+                className="input input-bordered mt-2 bg-slate-100 focus:outline-lightblu md:min-w-[35ch]"
               ></input>
             </label>
           </div>
         </div>
-        <div className="xl:block hidden mt-4 mb-2 font-thin text-xs">
+        <div className="md:block hidden mt-4 mb-2 font-thin text-xs">
           *Il caricamento manuale della cover attualmente non è disponibile.
         </div>
 
-        <div className="flex flex-col items-center xl:flex-row gap-6">
+        <div className="flex flex-col items-center md:flex-row gap-6">
           <label className="flex flex-col items-start label font-serif text-lg font-semibold text-darkblue">
             Anno
             <input
@@ -247,7 +247,7 @@ const AddBooks: React.FC = () => {
               required
               onChange={(e) => setYear(e.target.value)}
               value={year}
-              className="input input-bordered xl:w-[100px] mt-4 bg-slate-100 focus:outline-lightblue"
+              className="input input-bordered md:w-[100px] mt-4 bg-slate-100 focus:outline-lightblue"
             ></input>
           </label>
           <label className="flex flex-col items-start label font-serif text-lg font-semibold text-darkblue">

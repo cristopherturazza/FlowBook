@@ -45,11 +45,11 @@ const Exchanges: React.FC = () => {
         <h3 className="font-bold text-xl text-darkblue">Richieste Ricevute</h3>
         <div className="divider"></div>
         {isLoading ? (
-          <div className="text-center xl:min-w-[896px] animate-pulse">
+          <div className="text-center lg:min-w-[896px] animate-pulse">
             Attendere...
           </div>
         ) : isError || !data.received.length ? (
-          <div className="text-center xl:min-w-[896px]">
+          <div className="text-center lg:min-w-[896px]">
             Nessuna richiesta ricevuta al momento.
           </div>
         ) : (
@@ -77,11 +77,11 @@ const Exchanges: React.FC = () => {
         <h3 className="font-bold text-xl text-darkblue">Richieste Inviate</h3>
         <div className="divider"></div>
         {isLoading ? (
-          <div className="text-center xl:min-w-[896px] animate-pulse">
+          <div className="text-center lg:min-w-[896px] animate-pulse">
             Attendere...
           </div>
         ) : isError || !data.sent.length ? (
-          <div className="text-center xl:min-w-[896px]">
+          <div className="text-center lg:min-w-[896px]">
             Nessuna richiesta inviata al momento.
           </div>
         ) : (
@@ -104,7 +104,7 @@ const Exchanges: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center ">
-      <h1 className="text-5xl xl:text-7xl font-black text-center mt-12 text-darkblue tracking-tighter">
+      <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-center mt-12 text-darkblue tracking-tighter">
         {" "}
         I tuoi scambi{" "}
       </h1>
