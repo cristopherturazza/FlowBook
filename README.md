@@ -39,6 +39,7 @@ Join the flow! Upload any book you want exchange with someone and search among t
 ## ⚡ Try it
 
 Try it here: [FlowBook](https://flowbook.vercel.app/)
+(may be slow on first startup, free services)
 
 ## 📃 License
 
